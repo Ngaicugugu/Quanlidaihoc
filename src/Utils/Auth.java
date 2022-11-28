@@ -4,7 +4,8 @@
  */
 package Utils;
 
-import entity.users;
+import Entity.LoginUser;
+
 
 
 /**
@@ -12,14 +13,14 @@ import entity.users;
  * @author Thinkpad T490
  */
 public class Auth {
-    public static users user = null;
+    public static LoginUser user = null;
     public static void clear(){
         Auth.user = null;
     }    
     public static boolean isLogin(){
         return Auth.user != null;
     }
-    public static boolean isManager(){
-        return user.isVaitro();
+    public static String isManager(){
+        return user.getRole();
     }
 }

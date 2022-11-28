@@ -4,6 +4,10 @@
  */
 package quanlisinhvien;
 
+import Utils.Auth;
+import Utils.MsgBox;
+import quanlysv.DoiMatKhau;
+
 /**
  *
  * @author akbro
@@ -13,8 +17,27 @@ public class TrangChu extends javax.swing.JFrame {
     /**
      * Creates new form TrangChu
      */
+    // mo giao dien doi mat khau
+    public void openDoiMatKhau() {
+
+            if(Auth.isLogin()) {
+                    DoiMatKhau frame = new DoiMatKhau();
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+//                    frame.dispose();
+            }
+            else {
+                    MsgBox.alert(this, "Vui Lòng Đăng Nhập");
+            }
+    }
+    public void accessRight()   {
+        if(!Auth.isManager().equalsIgnoreCase("Admin")){
+                    mniDoiMatKhau.setVisible(false);
+        }
+    }
     public TrangChu() {
         initComponents();
+        accessRight();
     }
 
     /**
@@ -37,7 +60,7 @@ public class TrangChu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mniDoiMatKhau = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -119,13 +142,13 @@ public class TrangChu extends javax.swing.JFrame {
         jMenuItem1.setText("Đăng nhập");
         jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setText("Đổi mật khẩu");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mniDoiMatKhau.setText("Đổi mật khẩu");
+        mniDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mniDoiMatKhauActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(mniDoiMatKhau);
 
         jMenuItem3.setText("Đăng xuất");
         jMenu2.add(jMenuItem3);
@@ -204,9 +227,10 @@ public class TrangChu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mniDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoiMatKhauActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        openDoiMatKhau();
+    }//GEN-LAST:event_mniDoiMatKhauActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
@@ -270,7 +294,6 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -281,5 +304,6 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem mniDoiMatKhau;
     // End of variables declaration//GEN-END:variables
 }
