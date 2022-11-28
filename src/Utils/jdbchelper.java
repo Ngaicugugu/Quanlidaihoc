@@ -14,12 +14,13 @@ import java.sql.SQLException;
  *
  * @author Thinkpad T490
  */
+//;sslProtocol=TLSv1.2
 public class jdbchelper {
     static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDataSource";
-    static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=garan;"
-                + "encrypt=true;trustServercertificate=true;sslProtocol=TLSv1.2";
+    static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyDiem;"
+                + "encrypt=true;trustServercertificate=true";
     static String user="sa";
-    static String pass="1510";
+    static String pass="123456";
     static{
         try {
             Class.forName(driver);
