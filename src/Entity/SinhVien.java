@@ -9,7 +9,8 @@ package Entity;
  * @author Admin
  */
 public class SinhVien {
-    private String maSV, hoTen, ngaySinh, gioiTinh, diaChi, maLop;
+    private String maSV, hoTen, ngaySinh, diaChi, maLop;
+            boolean gioitinh;
 
     public String getMaSV() {
         return maSV;
@@ -35,14 +36,6 @@ public class SinhVien {
         this.ngaySinh = ngaySinh;
     }
 
-    public String getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
     public String getDiaChi() {
         return diaChi;
     }
@@ -59,16 +52,13 @@ public class SinhVien {
         this.maLop = maLop;
     }
 
-    public SinhVien(String maSV, String hoTen, String ngaySinh, String gioiTinh, String diaChi, String maLop) {
-        this.maSV = maSV;
-        this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
-        this.diaChi = diaChi;
-        this.maLop = maLop;
+    public boolean isGioitinh() {
+        return gioitinh;
     }
 
-    public SinhVien() {
+    public void setGioitinh(boolean gioitinh) {
+        this.gioitinh = gioitinh;
     }
+   
     
 }

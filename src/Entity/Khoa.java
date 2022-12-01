@@ -9,7 +9,19 @@ package Entity;
  * @author Admin
  */
 public class Khoa {
+
     private String maKhoa, tenKhoa;
+
+    @Override
+    public String toString() {
+        return this.tenKhoa;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Khoa other = (Khoa) obj;
+        return other.getTenKhoa().equals(this.getTenKhoa());
+    }
 
     public String getMaKhoa() {
         return maKhoa;
@@ -34,5 +46,5 @@ public class Khoa {
 
     public Khoa() {
     }
-    
+
 }

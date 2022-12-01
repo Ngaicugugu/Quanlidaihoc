@@ -10,7 +10,12 @@ package Entity;
  */
 public class Lop {
     private String maKhoa, maLop, tenLop;
-
+    
+    @Override
+    public String toString() {
+        return this.maLop ;
+    }
+    
     public String getMaKhoa() {
         return maKhoa;
     }
