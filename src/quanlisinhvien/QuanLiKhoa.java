@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLiKhoa extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form QuanLiKhoa
      */
