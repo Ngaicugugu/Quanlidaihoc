@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package quanlysv;
+
+package quanlisinhvien;
 
 import DAO.LoginUserDAO;
 import Entity.LoginUser;
@@ -82,8 +79,10 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Unlock.png"))); // NOI18N
         jLabel2.setText("Mật khẩu:");
 
+        txtLoginUser.setText("phanxuanha");
         txtLoginUser.setPreferredSize(new java.awt.Dimension(56, 27));
 
+        txtPass.setText("123");
         txtPass.setPreferredSize(new java.awt.Dimension(191, 19));
 
         btnLogin.setText("Đăng nhập");

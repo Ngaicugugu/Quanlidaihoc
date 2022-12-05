@@ -4,6 +4,10 @@
  */
 package quanlisinhvien;
 
+import DAO.ThongKeDAO;
+import javax.swing.JOptionPane;
+import org.apache.poi.hssf.record.PageBreakRecord;
+
 /**
  *
  * @author akbro
@@ -62,7 +66,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel1.setText("QUẢN LÍ ĐIẾM SINH VIÊN");
+        jLabel1.setText("QUẢN LÍ ĐIỂM SINH VIÊN");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách"));
 
@@ -255,6 +259,11 @@ public class QuanLiDiem extends javax.swing.JFrame {
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Card file.png"))); // NOI18N
         jButton5.setText("In bảng điểm");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,9 +323,19 @@ public class QuanLiDiem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        ThongKeDAO tkdao = new ThongKeDAO();
+        tkdao.selectAll();
+        while (true) {
+            tkdao.inbangdiemsv();
+            break;
+            }
+        JOptionPane.showMessageDialog(this, "In bảng điểm thành công");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
