@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Entity;
 
 /**
@@ -9,7 +6,8 @@ package Entity;
  * @author Admin
  */
 public class SinhVien {
-    private String maSV, hoTen, ngaySinh, gioiTinh, diaChi, maLop;
+    private String maSV, hoTen, ngaySinh, diaChi, maLop;
+    private boolean gioitinh;
 
     public String getMaSV() {
         return maSV;
@@ -35,14 +33,6 @@ public class SinhVien {
         this.ngaySinh = ngaySinh;
     }
 
-    public String getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
     public String getDiaChi() {
         return diaChi;
     }
@@ -58,17 +48,37 @@ public class SinhVien {
     public void setMaLop(String maLop) {
         this.maLop = maLop;
     }
+//
+//    public Boolean isGioitinh() {
+//        return gioitinh;
+//    }
+//
+//    public void setGioitinh(Boolean gioitinh) {
+//        this.gioitinh = gioitinh;
+//    }
 
-    public SinhVien(String maSV, String hoTen, String ngaySinh, String gioiTinh, String diaChi, String maLop) {
-        this.maSV = maSV;
-        this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
-        this.diaChi = diaChi;
-        this.maLop = maLop;
+    public boolean isGioitinh() {
+        return gioitinh;
+    }
+
+    public void setGioitinh(boolean gioitinh) {
+        this.gioitinh = gioitinh;
     }
 
     public SinhVien() {
     }
+
+    public SinhVien(String maSV, String hoTen, String ngaySinh, String diaChi, String maLop, Boolean gioitinh) {
+        this.maSV = maSV;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.maLop = maLop;
+        this.gioitinh = gioitinh;
+    }
+
+  
+
+  
     
 }

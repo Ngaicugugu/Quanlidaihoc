@@ -4,8 +4,12 @@
  */
 package quanlisinhvien;
 
+
+import DAO.ThongKeDAO;
 import Utils.Auth;
 import Utils.MsgBox;
+import javax.swing.JOptionPane;
+
 import quanlysv.DoiMatKhau;
 
 /**
@@ -20,21 +24,22 @@ public class TrangChu extends javax.swing.JFrame {
     // mo giao dien doi mat khau
     public void openDoiMatKhau() {
 
-            if(Auth.isLogin()) {
-                    DoiMatKhau frame = new DoiMatKhau();
-                    frame.setVisible(true);
-                    frame.setLocationRelativeTo(null);
+        if (Auth.isLogin()) {
+            DoiMatKhau frame = new DoiMatKhau();
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
 //                    frame.dispose();
-            }
-            else {
-                    MsgBox.alert(this, "Vui Lòng Đăng Nhập");
-            }
-    }
-    public void accessRight()   {
-        if(!Auth.isManager().equalsIgnoreCase("Admin")){
-                    mniDoiMatKhau.setVisible(false);
+        } else {
+            MsgBox.alert(this, "Vui Lòng Đăng Nhập");
         }
     }
+
+    public void accessRight() {
+        if (!Auth.isManager().equalsIgnoreCase("Admin")) {
+            mniDoiMatKhau.setVisible(false);
+        }
+    }
+
     public TrangChu() {
         initComponents();
         accessRight();
@@ -77,6 +82,8 @@ public class TrangChu extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
 
@@ -204,6 +211,37 @@ public class TrangChu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Thống kê");
+
+        jMenu1.setText("Điểm tổng kết sinh viên");
+        jMenu1.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu1MenuSelected(evt);
+            }
+        });
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenu1);
+
+        jMenu9.setText("Danh sách sinh viên");
+        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu9MouseClicked(evt);
+            }
+        });
+        jMenu6.add(jMenu9);
+
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Windows");
@@ -239,7 +277,36 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        ThongKeDAO tkdao = new ThongKeDAO();
+        tkdao.selectAll();
+        while (true) {
+            tkdao.intongketsv();
+            break;
+        }
+        JOptionPane.showMessageDialog(this, "Thống kê tổng kết điểm thành công. Thư mục được chứa ở D://thongketk.xlsx");
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu1MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu1MenuSelected
+
+    }//GEN-LAST:event_jMenu1MenuSelected
+
+    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
+        ThongKeDAO dao = new ThongKeDAO();
+        dao.selectAllSV();
+        while (true) {
+            dao.indssv();
+            break;
+        }
+        JOptionPane.showMessageDialog(this, "Thống kê danh sách sinh viên thành công. Thư mục được chứa ở D://thongkedssv.xlsx");
+    }//GEN-LAST:event_jMenu9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -284,6 +351,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -291,6 +359,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;

@@ -25,7 +25,7 @@ public class LoginUserDAO extends QuanLySinhVienDAO<LoginUser, String>{
     public void insert(LoginUser entity) {
             try {
 			jdbchelper.update(insert_sql, entity.getLoginUser(),entity.getPass(), entity.getName(),
-                                entity.getGender(), entity.getPhone(), entity.getEmail(), entity.getRole());
+                                entity.isGioitinh(), entity.getPhone(), entity.getEmail(), entity.getRole());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,7 +36,7 @@ public class LoginUserDAO extends QuanLySinhVienDAO<LoginUser, String>{
     public void update(LoginUser entity) {
            try {
 			jdbchelper.update(update_sql,entity.getPass(), entity.getName(),
-                                entity.getGender(), entity.getPhone(), entity.getEmail(),
+                                entity.isGioitinh(), entity.getPhone(), entity.getEmail(),
                                 entity.getRole(), entity.getLoginUser());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -75,11 +75,11 @@ public class LoginUserDAO extends QuanLySinhVienDAO<LoginUser, String>{
 			ResultSet rs = jdbchelper.query(sql, args);
 			
 			while(rs.next()) {
-				LoginUser entity = new LoginUser(sql, sql, sql, sql, sql, sql, sql);
+				LoginUser entity = new LoginUser();
 				entity.setLoginUser(rs.getString(1));
                                 entity.setPass(rs.getString(2));
                                 entity.setName(rs.getString(3));
-                                entity.setGender(rs.getString(4));
+                                entity.setGioitinh(rs.getBoolean(4));
                                 entity.setPhone(rs.getString(5));
                                 entity.setEmail(rs.getString(6));
                                 entity.setRole(rs.getString(7));
