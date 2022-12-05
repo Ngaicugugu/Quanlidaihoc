@@ -20,7 +20,7 @@ public class jdbchelper {
     static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyDiem;"
                 + "encrypt=true;trustServercertificate=true";
     static String user="sa";
-    static String pass="123";
+    static String pass="1510";
     static{
         try {
             Class.forName(driver);
