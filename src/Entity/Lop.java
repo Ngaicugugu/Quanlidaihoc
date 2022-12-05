@@ -9,8 +9,8 @@ package Entity;
  * @author Admin
  */
 public class Lop {
-    private String maKhoa, maLop, tenLop;
-    
+    private String  maLop, tenLop;
+    private String maKhoa;
     @Override
     public String toString() {
         return this.maLop ;

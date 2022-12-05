@@ -16,37 +16,36 @@ import java.sql.ResultSet;
  */
 public class lopDAO extends QuanLySinhVienDAO<Lop, String> {
 
-    String insert_sql = " INSERT INTO tblLOP (MaKhoa,MaLop,TenLop) VALUES (?, ?, ?) ";
-    String update_sql = " UPDATE tblLOP SET MaKhoa = ?, TenLop = ?, WHERE MaLop = ? ";
-    String delete_sql = " DELETE FROM tblLOP WHERE MaLop = ? ";
+//    String insert_sql = " INSERT INTO tblLOP (MaKhoa,MaLop,TenLop) VALUES (?, ?, ?) ";
+//    String update_sql = " UPDATE tblLOP SET MaKhoa = ?, TenLop = ?, WHERE MaLop = ? ";
+//    String delete_sql = " DELETE FROM tblLOP WHERE MaLop = ? ";
     String selectAll_sql = " SELECT * FROM tblLOP ";
     String selectByID_sql = " SELECT * FROM tblLOP WHERE MaLop = ? ";
 
     @Override
     public void insert(Lop entity) {
-        try {
-            jdbchelper.update(insert_sql, entity.getMaKhoa(), entity.getMaLop(), entity.getTenLop());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String sql = " INSERT INTO tblLOP (MaKhoa,MaLop,TenLop) VALUES (?, ?, ?) ";
+        
+        jdbchelper.update(sql, 
+                entity.getMaLop(),
+                entity.getTenLop(),
+                entity.getMaKhoa());
     }
 
     @Override
     public void update(Lop entity) {
-        try {
-            jdbchelper.update(update_sql, entity.getMaKhoa(), entity.getTenLop(), entity.getMaLop());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String sql = " UPDATE tblLOP SET MaKhoa = ?, TenLop = ? WHERE MaLop = ? ";
+        
+        jdbchelper.update(sql, 
+                entity.getMaKhoa(),
+                entity.getTenLop(),
+                entity.getMaLop());
     }
 
     @Override
     public void delete(String key) {
-        try {
-            jdbchelper.update(delete_sql, key);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String sql = " DELETE FROM tblLOP WHERE MaLop = ? ";       
+        jdbchelper.update(sql, key);
     }
 
     @Override
@@ -71,7 +70,7 @@ public class lopDAO extends QuanLySinhVienDAO<Lop, String> {
 
             while (rs.next()) {
                 Lop entity = new Lop();
-                entity.setMaKhoa(rs.getString("MaKhoa"));
+                entity.setMaKhoa(rs.getString("Makhoa"));
                 entity.setMaLop(rs.getString("MaLop"));
                 entity.setTenLop(rs.getString("TenLop"));
                 List.add(entity);

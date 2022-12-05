@@ -24,42 +24,46 @@ public class giangvienDAO extends QuanLySinhVienDAO<GiangVien, String> {
 
     @Override
     public void insert(GiangVien entity) {
-           try {
-            jdbchelper.update(insert_sql, entity.getMaGV(), entity.getTenGV(), entity.isGioitinh(), entity.getPhone()
-                    ,entity.getEmail(), entity.getAnh());
+        try {
+            jdbchelper.update(insert_sql, entity.getMaGV(), entity.getTenGV(), entity.isGioitinh(), entity.getPhone(),
+                     entity.getEmail(), entity.getAnh());
         } catch (Exception e) {
             e.printStackTrace();
         }
-         }
+    }
 
     @Override
     public void update(GiangVien entity) {
-           try {
-            jdbchelper.update(update_sql,  entity.getTenGV(), entity.isGioitinh(), entity.getPhone()
-                    ,entity.getEmail(), entity.getAnh(), entity.getMaGV());
+        try {
+            jdbchelper.update(update_sql, entity.getTenGV(), entity.isGioitinh(), entity.getPhone(),
+                     entity.getEmail(), entity.getAnh(), entity.getMaGV());
         } catch (Exception e) {
             e.printStackTrace();
-        } }
+        }
+    }
 
     @Override
     public void delete(String key) {
-         try {
+        try {
             jdbchelper.update(delete_sql, key);
         } catch (Exception e) {
             e.printStackTrace();
-        } }
+        }
+    }
 
     @Override
     public List<GiangVien> selectAll() {
-        return selectBySql(selectAll_sql);  }
+        return selectBySql(selectAll_sql);
+    }
 
     @Override
     public GiangVien selectById(String key) {
-         List<GiangVien> List = selectBySql(selectByID_sql, key);
+        List<GiangVien> List = selectBySql(selectByID_sql, key);
         if (List.isEmpty()) {
             return null;
         }
-        return List.get(0);  }
+        return List.get(0);
+    }
 
     @Override
     protected List<GiangVien> selectBySql(String sql, Object... args) {
@@ -79,6 +83,7 @@ public class giangvienDAO extends QuanLySinhVienDAO<GiangVien, String> {
         } catch (Exception e) {
             throw new RuntimeException();
         }
-        return List;  }
+        return List;
+    }
 
 }
