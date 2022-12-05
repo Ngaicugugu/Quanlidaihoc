@@ -5,6 +5,7 @@
 package quanlisinhvien;
 
 import DAO.ThongKeDAO;
+import Utils.Auth;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.record.PageBreakRecord;
 
@@ -17,8 +18,20 @@ public class QuanLiDiem extends javax.swing.JFrame {
     /**
      * Creates new form QuanLiDiem
      */
+    // xu ly quyen truy cap
+    public void accessRight() {
+        if (Auth.isManager().equalsIgnoreCase("Student")) {
+            btnAdd.setVisible(false);
+            btnUpdate.setVisible(false);
+            btnDel.setVisible(false);
+        }
+        if (Auth.isManager().equalsIgnoreCase("Teacher")) {
+            btnDel.setVisible(false);
+        }
+    }
     public QuanLiDiem() {
         initComponents();
+        accessRight();
     }
 
     /**
@@ -55,9 +68,9 @@ public class QuanLiDiem extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -236,15 +249,20 @@ public class QuanLiDiem extends javax.swing.JFrame {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Exit.png"))); // NOI18N
         jButton4.setText("Thoát");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Add.png"))); // NOI18N
-        jButton1.setText("Thêm");
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Add.png"))); // NOI18N
+        btnAdd.setText("Thêm");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Edit.png"))); // NOI18N
-        jButton2.setText("Sửa");
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Edit.png"))); // NOI18N
+        btnUpdate.setText("Sửa");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
-        jButton3.setText("Xóa");
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
+        btnDel.setText("Xóa");
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Card file.png"))); // NOI18N
         jButton5.setText("In bảng điểm");
@@ -273,9 +291,9 @@ public class QuanLiDiem extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(8, 8, 8))
@@ -294,11 +312,11 @@ public class QuanLiDiem extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btnDel)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)
                         .addGap(18, 18, 18)
@@ -321,6 +339,11 @@ public class QuanLiDiem extends javax.swing.JFrame {
             }
         JOptionPane.showMessageDialog(this, "In bảng điểm thành công");
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
          * @param args the command line arguments
@@ -358,9 +381,9 @@ public class QuanLiDiem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
