@@ -5,6 +5,7 @@
 package DAO;
 
 import Entity.Khoa;
+import Entity.Lop;
 import Utils.jdbchelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,37 +17,43 @@ import java.sql.ResultSet;
  */
 public class khoaDAO extends QuanLySinhVienDAO<Khoa, String> {
 
-    String insert_sql = " INSERT INTO tblKHOA (MaKhoa,tblKHOA) VALUES (?, ?) ";
-    String update_sql = " UPDATE tblKHOA SET TenKhoa  = ?, WHERE MaKhoa  = ? ";
-    String delete_sql = " DELETE FROM tblKHOA WHERE MaKhoa = ? ";
+//    String insert_sql = " INSERT INTO tblKHOA (MaKhoa,tblKHOA) VALUES (?, ?) ";
+//    String update_sql = " UPDATE tblKHOA SET TenKhoa = ? WHERE MaKhoa  = ? ";
+//    String delete_sql = " DELETE FROM tblKHOA WHERE MaKhoa = ? ";
     String selectAll_sql = " SELECT * FROM tblKHOA ";
+    String selectmakhoa_sql = " SELECT MaKhoa FROM tblKhoa ";
     String selectByID_sql = " SELECT * FROM tblKHOA WHERE MaKhoa = ? ";
 
     @Override
     public void insert(Khoa entity) {
-        try {
-            jdbchelper.update(insert_sql, entity.getMaKhoa(), entity.getTenKhoa());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String sql = "INSERT INTO tblKHOA (MaKhoa, TenKhoa) VALUES (?, ?)";
+
+        jdbchelper.update(sql,
+                entity.getMaKhoa(),
+                entity.getTenKhoa());
     }
 
     @Override
     public void update(Khoa entity) {
-        try {
-            jdbchelper.update(update_sql, entity.getTenKhoa(), entity.getMaKhoa());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String sql = "UPDATE tblKHOA SET TenKhoa = ? Where MaKhoa = ? ";
+
+        jdbchelper.update(sql,
+                entity.getTenKhoa(),
+                entity.getMaKhoa()
+        );
     }
+//    public void update(Khoa entity) {
+//        try {
+//            jdbchelper.update(update_sql, entity.getTenKhoa(), entity.getMaKhoa());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void delete(String key) {
-        try {
-            jdbchelper.update(delete_sql, key);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String sql = "DELETE FROM tblKHOA WHERE MaKhoa = ? ";
+        jdbchelper.update(sql, key);
 
     }
 
@@ -81,4 +88,9 @@ public class khoaDAO extends QuanLySinhVienDAO<Khoa, String> {
         return List;
     }
 
+//    public List<Khoa> selectByKhoa(String makhoa) {
+//        String sql = "select tblLop from MaKhoa";
+//        return this.selectBySql(sql, makhoa);
+//    }
+//    
 }
