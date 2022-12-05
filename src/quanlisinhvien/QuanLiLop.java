@@ -50,7 +50,7 @@ public class QuanLiLop extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtmalop = new javax.swing.JTextField();
         txttenlop = new javax.swing.JTextField();
-        cbomakhoa = new javax.swing.JComboBox<>();
+        txtmakhoa = new javax.swing.JTextField();
         btnthoat = new javax.swing.JButton();
         btnsua = new javax.swing.JButton();
         btnxoa = new javax.swing.JButton();
@@ -109,12 +109,6 @@ public class QuanLiLop extends javax.swing.JFrame {
 
         jLabel4.setText("Mã khoa:");
 
-        cbomakhoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbomakhoaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -133,19 +127,19 @@ public class QuanLiLop extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbomakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(txtmakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(txtmalop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbomakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(txtmakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txttenlop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,13 +231,6 @@ public class QuanLiLop extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbomakhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbomakhoaActionPerformed
-        // TODO add your handling code here:
-        this.Load();
-//            this.filltotable();
-//            this.fillcbolop();
-    }//GEN-LAST:event_cbomakhoaActionPerformed
-
     private void tbllopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbllopMouseClicked
         // TODO add your handling code here:
         current = tbllop.getSelectedRow();
@@ -319,7 +306,6 @@ public class QuanLiLop extends javax.swing.JFrame {
     private javax.swing.JButton btnthem;
     private javax.swing.JButton btnthoat;
     private javax.swing.JButton btnxoa;
-    private javax.swing.JComboBox<String> cbomakhoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -328,14 +314,15 @@ public class QuanLiLop extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbllop;
+    private javax.swing.JTextField txtmakhoa;
     private javax.swing.JTextField txtmalop;
     private javax.swing.JTextField txttenlop;
     // End of variables declaration//GEN-END:variables
 
     void init() {
         this.setLocationRelativeTo(null);
-//        this.Load();
-        this.fillcbokhoa();
+        this.Load();
+        
     }
 
     lopDAO lopdao = new lopDAO();
@@ -362,7 +349,7 @@ public class QuanLiLop extends javax.swing.JFrame {
         Lop model = getForm();
         try {
             lopdao.insert(model);
-            this.filltotable();
+            this.Load();
 
             MsgBox.alert(this, "Thêm mới thành công!");
         } catch (Exception e) {
@@ -399,58 +386,18 @@ public class QuanLiLop extends javax.swing.JFrame {
     int current = 0;
 
     public void Show() {
+        txtmakhoa.setText(tbllop.getValueAt(current, 0).toString());
         txttenlop.setText(tbllop.getValueAt(current, 1).toString());
         txtmalop.setText(tbllop.getValueAt(current, 2).toString());
     }
 
     Lop getForm() {
         Lop kh = new Lop();
-        kh.setMaKhoa(cbomakhoa.getItemAt(WIDTH));
+        kh.setMaKhoa(txtmakhoa.getText());
         kh.setMaLop(txtmalop.getText());
         kh.setTenLop(txttenlop.getText());
         return kh;
     }
 
-    private void filltotable() {
-        DefaultTableModel model = (DefaultTableModel) tbllop.getModel();
-        model.setRowCount(0);
-        Lop lop = (Lop) cbomakhoa.getSelectedItem();
-        if (lop != null) {
-            List<Lop> list = lopdao.selectByKhoa(lop.getMaLop());
-            for (Lop sv : list) {
-                Object[] row = {
-                    sv.getMaKhoa(),
-                    sv.getTenLop(),
-                    sv.getMaLop(),};
-                model.addRow(row);
-            }
-        }
-    }
 
-    void fillcbolop() {
-        try {
-            DefaultComboBoxModel model = (DefaultComboBoxModel) cbomakhoa.getModel();
-            model.removeAllElements();
-            Khoa khoa = (Khoa) cbomakhoa.getSelectedItem();
-            if (khoa != null) {
-                List<Lop> list = lopdao.selectByKhoa(khoa.getMaKhoa());
-                for (Lop Lop : list) {
-                    model.addElement(Lop);
-                }
-                this.Load();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void fillcbokhoa() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cbomakhoa.getModel();
-        model.removeAllElements();
-        List<Khoa> list = khoadao.selectAll();
-        for (Khoa khoa : list) {
-            model.addElement(khoa);
-        }
-//        this.Load();
-    }
 }

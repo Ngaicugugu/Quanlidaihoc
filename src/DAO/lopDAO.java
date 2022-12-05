@@ -26,10 +26,11 @@ public class lopDAO extends QuanLySinhVienDAO<Lop, String> {
     public void insert(Lop entity) {
         String sql = " INSERT INTO tblLOP (MaKhoa,MaLop,TenLop) VALUES (?, ?, ?) ";
         
-        jdbchelper.update(sql, 
+        jdbchelper.update(sql,
+                entity.getMaKhoa(),
                 entity.getMaLop(),
-                entity.getTenLop(),
-                entity.getMaKhoa());
+                entity.getTenLop());
+                
     }
 
     @Override
