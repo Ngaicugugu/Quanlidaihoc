@@ -8,6 +8,7 @@ import DAO.khoaDAO;
 import DAO.lopDAO;
 import Entity.Khoa;
 import Entity.Lop;
+import Utils.Auth;
 import Utils.MsgBox;
 import Utils.jdbchelper;
 import java.awt.HeadlessException;
@@ -25,6 +26,14 @@ public class QuanLiLop extends javax.swing.JFrame {
     /**
      * Creates new form QuanLiLop
      */
+    // xu ly quyen truy cap
+    public void accessRight() {
+        if (!Auth.isManager().equalsIgnoreCase("Admin")) {
+            btnAdd.setVisible(false);
+            btnUpdate.setVisible(false);
+            btnDel.setVisible(false);
+        }
+    }
     public QuanLiLop() {
         initComponents();
         init();
@@ -52,9 +61,9 @@ public class QuanLiLop extends javax.swing.JFrame {
         txttenlop = new javax.swing.JTextField();
         txtmakhoa = new javax.swing.JTextField();
         btnthoat = new javax.swing.JButton();
-        btnsua = new javax.swing.JButton();
-        btnxoa = new javax.swing.JButton();
-        btnthem = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,27 +163,27 @@ public class QuanLiLop extends javax.swing.JFrame {
             }
         });
 
-        btnsua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Edit.png"))); // NOI18N
-        btnsua.setText("Sửa");
-        btnsua.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Edit.png"))); // NOI18N
+        btnUpdate.setText("Sửa");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsuaActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
-        btnxoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
-        btnxoa.setText("Xóa");
-        btnxoa.addActionListener(new java.awt.event.ActionListener() {
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
+        btnDel.setText("Xóa");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnxoaActionPerformed(evt);
+                btnDelActionPerformed(evt);
             }
         });
 
-        btnthem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Add.png"))); // NOI18N
-        btnthem.setText("Thêm");
-        btnthem.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Add.png"))); // NOI18N
+        btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnthemActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -195,13 +204,13 @@ public class QuanLiLop extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnsua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnthoat))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnthem)
+                                .addComponent(btnAdd)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnxoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
@@ -217,11 +226,11 @@ public class QuanLiLop extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnthem)
-                            .addComponent(btnxoa))
+                            .addComponent(btnAdd)
+                            .addComponent(btnDel))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnsua)
+                            .addComponent(btnUpdate)
                             .addComponent(btnthoat))
                         .addGap(61, 61, 61)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,24 +246,24 @@ public class QuanLiLop extends javax.swing.JFrame {
         this.Show();
     }//GEN-LAST:event_tbllopMouseClicked
 
-    private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         this.insert();
-    }//GEN-LAST:event_btnthemActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
         this.delete();
-    }//GEN-LAST:event_btnxoaActionPerformed
+    }//GEN-LAST:event_btnDelActionPerformed
 
-    private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         this.Update();
-    }//GEN-LAST:event_btnsuaActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnthoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthoatActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnthoatActionPerformed
 
     private void tbllopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbllopMousePressed
@@ -302,10 +311,10 @@ public class QuanLiLop extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnsua;
-    private javax.swing.JButton btnthem;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnthoat;
-    private javax.swing.JButton btnxoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -322,7 +331,7 @@ public class QuanLiLop extends javax.swing.JFrame {
     void init() {
         this.setLocationRelativeTo(null);
         this.Load();
-        
+        accessRight();
     }
 
     lopDAO lopdao = new lopDAO();
