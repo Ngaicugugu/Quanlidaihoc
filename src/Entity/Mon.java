@@ -11,6 +11,17 @@ package Entity;
 public class Mon {
     private String maMon, tenMon, maGV, hocKi, maKhoa;
     private int soTiet;
+    
+    @Override
+    public String toString() {
+        return this.maMon;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Mon other = (Mon) obj;
+        return other.getMaKhoa().equals(this.getMaMon());
+    }
 
     public String getMaMon() {
         return maMon;
