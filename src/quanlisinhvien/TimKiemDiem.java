@@ -53,7 +53,7 @@ public class TimKiemDiem extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDiem = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("THÔNG TIN ĐIỂM SINH VIÊN");
@@ -236,7 +236,7 @@ public class TimKiemDiem extends javax.swing.JFrame {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
     /**

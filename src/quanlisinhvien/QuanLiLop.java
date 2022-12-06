@@ -65,7 +65,7 @@ public class QuanLiLop extends javax.swing.JFrame {
         btnDel = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 32)); // NOI18N
         jLabel1.setText("QUẢN LÍ LỚP");
