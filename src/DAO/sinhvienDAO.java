@@ -91,5 +91,5 @@ public class sinhvienDAO extends QuanLySinhVienDAO<SinhVien, String> {
         String sql="select * from tblSINH_VIEN where MaLop=? ";
         return this.selectBySql(sql, malop);
     }
-
+    
 }
