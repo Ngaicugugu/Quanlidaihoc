@@ -4,6 +4,17 @@
  */
 package quanlisinhvien;
 
+import DAO.khoaDAO;
+import DAO.monDAO;
+import DAO.timdiemDAO;
+import Entity.KetQua;
+import Entity.Khoa;
+import Entity.Mon;
+import Utils.MsgBox;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thinkpad T490
@@ -15,6 +26,7 @@ public class TimKiemDiem extends javax.swing.JFrame {
      */
     public TimKiemDiem() {
         initComponents();
+        init();
     }
 
     /**
@@ -29,14 +41,14 @@ public class TimKiemDiem extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbomakhoa = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        btnTim = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
+        cbomon = new javax.swing.JComboBox<>();
+        txttimkiem = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDiem = new javax.swing.JTable();
@@ -58,7 +70,7 @@ public class TimKiemDiem extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbomakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -66,7 +78,7 @@ public class TimKiemDiem extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbomakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
@@ -77,11 +89,21 @@ public class TimKiemDiem extends javax.swing.JFrame {
 
         jLabel4.setText("Môn học:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Search.png"))); // NOI18N
-        jButton1.setText("Tìm kiếm");
+        btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Search.png"))); // NOI18N
+        btnTim.setText("Tìm kiếm");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Exit.png"))); // NOI18N
-        jButton2.setText("Thoát");
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Exit.png"))); // NOI18N
+        btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -90,8 +112,8 @@ public class TimKiemDiem extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(78, 78, 78))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -100,8 +122,8 @@ public class TimKiemDiem extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox2, 0, 125, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(cbomon, 0, 125, Short.MAX_VALUE)
+                    .addComponent(txttimkiem))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -110,15 +132,15 @@ public class TimKiemDiem extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbomon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(jButton1)
+                .addComponent(btnTim)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnThoat)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -126,23 +148,31 @@ public class TimKiemDiem extends javax.swing.JFrame {
 
         tblDiem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "MaSV", "Họ tên", "Mã lớp", "Mã môn"
+                "MaSV", "Họ tên", "Mã môn", "Điểm TB", "Điểm TK"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblDiem);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -199,6 +229,16 @@ public class TimKiemDiem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
+        this.timKiem();
+    }//GEN-LAST:event_btnTimActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,10 +275,10 @@ public class TimKiemDiem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnThoat;
+    private javax.swing.JButton btnTim;
+    private javax.swing.JComboBox<String> cbomakhoa;
+    private javax.swing.JComboBox<String> cbomon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -247,7 +287,61 @@ public class TimKiemDiem extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblDiem;
+    private javax.swing.JTextField txttimkiem;
     // End of variables declaration//GEN-END:variables
-   }
+
+    timdiemDAO dao = new timdiemDAO();
+    khoaDAO khdao = new khoaDAO();
+    monDAO mdao = new monDAO();
+    int row = -1;
+
+    void init() {
+        this.setLocationRelativeTo(null);
+        this.filltotable();
+        this.row = -1;
+        this.fillComnoBoxKhoaHoc();
+        this.fillComnoBoxMonHoc();
+    }
+
+    void fillComnoBoxKhoaHoc() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbomakhoa.getModel();
+        model.removeAllElements();
+        List<Khoa> list = khdao.selectAll();
+        for (Khoa kh : list) {
+            model.addElement(kh);
+        }
+    }
+    void fillComnoBoxMonHoc() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbomon.getModel();
+        model.removeAllElements();
+        List<Mon> list = mdao.selectAll();
+        for (Mon m : list) {
+            model.addElement(m);
+        }
+    }
+    private void filltotable() {
+        DefaultTableModel model = (DefaultTableModel) tblDiem.getModel();
+        model.setRowCount(0);
+        try {
+            String keyword = txttimkiem.getText();
+            List<KetQua> list = dao.selectByKeyword(keyword);
+            for (KetQua kq : list) {
+                Object[] row = {
+                    kq.getMaSV(),
+                    kq.getHoTen(),
+                    kq.getMaMon(),
+                    kq.getDiemTB(),
+                    kq.getDiemTongKet()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu");
+        }
+    }
+    private void timKiem() {
+        this.filltotable();
+        this.row = 1;
+    }
+}
