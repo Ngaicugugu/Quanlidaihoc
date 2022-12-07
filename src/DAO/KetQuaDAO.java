@@ -14,9 +14,9 @@ import java.util.ArrayList;
  * @author Admin
  */
 public class KetQuaDAO extends QuanLySinhVienDAO<KetQua, String>{
-    String insert_sql = " INSERT INTO tblKET_QUA (MaSV, HoTen, MaMon,DiemTB, DiemTongKet, HanhKiem, HocKi, GhiChu) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
-    String update_sql = " UPDATE tblKET_QUA SET HoTen = ?, MaMon = ?, DiemTB = ?, DiemTongKet = ?, HanhKiem = ?, HocKi = ?, GhiChu = ? WHERE MaSV = ? ";
-    String delete_sql = " DELETE FROM tblKET_QUA WHERE MaSV = ? ";
+    String insert_sql = " INSERT INTO tblKET_QUA (MaSV, HoTen, MaMon, DiemTB, DiemTongKet, HanhKiem, HocKi, GhiChu) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
+    String update_sql = " UPDATE tblKET_QUA SET HoTen = ?, DiemTB = ?, DiemTongKet = ?, HanhKiem = ?, HocKi = ?, GhiChu = ? WHERE MaSV = ? AND MaMon = ?";
+    String delete_sql = " DELETE FROM tblKET_QUA WHERE MaSV = ? AND MaMon = ? ";
     String selectAll_sql = " SELECT * FROM tblKET_QUA ";
     String selectByID_sql = " SELECT * FROM tblKET_QUA WHERE MaSV = ? ";
 
@@ -29,15 +29,16 @@ public class KetQuaDAO extends QuanLySinhVienDAO<KetQua, String>{
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     @Override
     public void update(KetQua entity) {
         try {
-                jdbchelper.update(update_sql, entity.getHoTen(), entity.getMaMon()
+                jdbchelper.update(update_sql, entity.getHoTen()
                         , entity.getDiemTB(),entity.getDiemTongKet(), entity.getHanhKiem(),
-                        entity.getHocKi(), entity.getGhiChu(), entity.getMaSV() );
+                        entity.getHocKi(), entity.getGhiChu(), entity.getMaSV(), entity.getMaMon() );
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -53,7 +54,14 @@ public class KetQuaDAO extends QuanLySinhVienDAO<KetQua, String>{
 			e.printStackTrace();
 		}
     }
-
+    public void delete(String key, String maMon) {
+        try {
+			jdbchelper.update(delete_sql,key, maMon);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     @Override
     public List<KetQua> selectAll() {
        return selectBySql(selectAll_sql);

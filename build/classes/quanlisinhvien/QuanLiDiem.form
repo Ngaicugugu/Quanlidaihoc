@@ -141,7 +141,7 @@
                   <Table columnCount="6" rowCount="4">
                     <Column editable="true" title="M&#xe3; sinh vi&#xea;n" type="java.lang.Object"/>
                     <Column editable="true" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
-                    <Column editable="true" title="M&#xe3; l&#x1edb;p" type="java.lang.Object"/>
+                    <Column editable="true" title="H&#x1ea1;nh Ki&#x1ec3;m" type="java.lang.Object"/>
                     <Column editable="true" title="M&#xe3; m&#xf4;n" type="java.lang.Object"/>
                     <Column editable="true" title="&#x110;i&#x1ec3;m trung b&#xec;nh" type="java.lang.Object"/>
                     <Column editable="true" title="&#x110;i&#x1ec3;m t&#x1ed5;ng k&#x1ebf;t" type="java.lang.Object"/>
@@ -309,14 +309,20 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtDiemTongKet" pref="157" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="txtHoTen" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cboHocKy" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDiemTongKet" pref="157" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -344,6 +350,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cboHanhKiem" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboHocKy" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
@@ -398,6 +406,29 @@
         <Component class="javax.swing.JTextField" name="txtHoTen">
         </Component>
         <Component class="javax.swing.JTextField" name="txtDiemTongKet">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="H&#x1ecd;c K&#x1ef3;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboHocKy">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="7">
+                <StringItem index="0" value="1"/>
+                <StringItem index="1" value="2"/>
+                <StringItem index="2" value="3"/>
+                <StringItem index="3" value="4"/>
+                <StringItem index="4" value="5"/>
+                <StringItem index="5" value="6"/>
+                <StringItem index="6" value="7"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

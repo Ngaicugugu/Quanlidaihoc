@@ -117,7 +117,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
                 dsLop = lDAO.selectByKhoa(m.getMaKhoa());
 //                for(Lop L:dsLop){
                       model.addRow(new Object[]{
-                        kq.getMaSV(),kq.getHoTen(),L.getMaLop(),kq.getMaMon(),kq.getDiemTB(),kq.getDiemTongKet()
+                        kq.getMaSV(),kq.getHoTen(),kq.getHanhKiem(),kq.getMaMon(),kq.getDiemTB(),kq.getDiemTongKet()
                     });
 //                }   
             }
@@ -143,7 +143,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
         KetQua kq = getForm();
         KetQuaDAO kqDAO = new KetQuaDAO();
         try {
-            kqDAO.insert(kq);
+            kqDAO.update(kq);
             MsgBox.alert(null, "Sửa Thành Công");
             clearForm();
             this.loadDataToBangDiemSV();
@@ -154,9 +154,15 @@ public class QuanLiDiem extends javax.swing.JFrame {
     // xu ly nut del
     public void deleteDiem(){
         String maSV = txtMaSV.getText().trim();
+        //xu ly chuoi
+        String maMon1 = (String) cboMon.getSelectedItem();
+        int I = maMon1.indexOf("(");
+        String maMon = maMon1.substring(0, I);
+        
+        System.out.println(maMon);
         KetQuaDAO kqDAO = new KetQuaDAO();
         try {
-           kqDAO.delete(maSV);
+           kqDAO.delete(maSV, maMon);
            this.loadDataToBangDiemSV();
            clearForm();
            MsgBox.alert(this, "Xóa thành công!");
@@ -197,12 +203,13 @@ public class QuanLiDiem extends javax.swing.JFrame {
             int I = maMon1.indexOf("(");
             String maMon = maMon1.substring(0, I);
             
-            kq.setMaSV(txtMaSV.getText().trim());
+            kq.setMaSV(txtMaSV.getText().trim()); 
             kq.setHoTen(txtHoTen.getText().trim());
             kq.setDiemTB(Float.parseFloat(txtDiemTB.getText().trim()));
             kq.setDiemTongKet(Float.parseFloat(txtDiemTongKet.getText().trim()));
             kq.setMaMon(maMon);
             kq.setGhiChu(txtGhiChu.getText().trim());
+            kq.setHocKi(Integer.parseInt((String)cboHocKy.getSelectedItem()));
             kq.setHanhKiem((String) cboHanhKiem.getSelectedItem());
         } catch (Exception e) {
         }
@@ -215,6 +222,8 @@ public class QuanLiDiem extends javax.swing.JFrame {
         txtDiemTB.setText(kq.getDiemTB() + "");
         txtDiemTongKet.setText(kq.getDiemTongKet() + "");
         txtGhiChu.setText(kq.getGhiChu());
+        cboHanhKiem.setSelectedItem(kq.getHanhKiem());
+        cboHocKy.setSelectedItem(kq.getHocKi()+ "");
     }
     
     public QuanLiDiem() {
@@ -260,6 +269,8 @@ public class QuanLiDiem extends javax.swing.JFrame {
         cboHanhKiem = new javax.swing.JComboBox<>();
         txtHoTen = new javax.swing.JTextField();
         txtDiemTongKet = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        cboHocKy = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         txtGhiChu = new javax.swing.JTextField();
         btnExit = new javax.swing.JButton();
@@ -284,7 +295,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã sinh viên", "Họ và tên", "Mã lớp", "Mã môn", "Điểm trung bình", "Điểm tổng kết"
+                "Mã sinh viên", "Họ và tên", "Hạnh Kiểm", "Mã môn", "Điểm trung bình", "Điểm tổng kết"
             }
         ));
         tblDiemSinhVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -384,6 +395,10 @@ public class QuanLiDiem extends javax.swing.JFrame {
 
         cboHanhKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tốt", "Khá", "Trung Bình", "Yếu" }));
 
+        jLabel5.setText("Học Kỳ");
+
+        cboHocKy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -409,13 +424,17 @@ public class QuanLiDiem extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDiemTongKet, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(46, 46, 46)
-                        .addComponent(txtHoTen)))
+                        .addComponent(txtHoTen))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDiemTongKet, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))))
                 .addGap(25, 25, 25))
         );
         jPanel3Layout.setVerticalGroup(
@@ -436,7 +455,9 @@ public class QuanLiDiem extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboHanhKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel5)
+                    .addComponent(cboHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
         );
 
@@ -645,6 +666,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboHanhKiem;
+    private javax.swing.JComboBox<String> cboHocKy;
     private javax.swing.JComboBox<String> cboKhoa;
     private javax.swing.JComboBox<String> cboLop;
     private javax.swing.JComboBox<String> cboMon;
@@ -653,6 +675,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
