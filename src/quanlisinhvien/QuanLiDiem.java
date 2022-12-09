@@ -17,6 +17,7 @@ import Utils.Auth;
 import Utils.MsgBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -63,22 +64,22 @@ public class QuanLiDiem extends javax.swing.JFrame {
             m.setMaKhoa(k.getMaKhoa());
 //            System.out.println(L.getMaKhoa());
         }
-        this.fillComboBoxLop();
+//        this.fillComboBoxLop();
         this.fillComboBoxMon();
     }
     // load lop
-    public void fillComboBoxLop(){
-       cboLop.removeAllItems();
-       lopDAO lDAO = new lopDAO();
-       
-       int Index = cboKhoa.getSelectedIndex();
-       if(Index >=0){
-           dsLop = lDAO.selectByKhoa(dsKhoa.get(Index).getMaKhoa());
-           for(Lop L: dsLop){
-               cboLop.addItem(L.getMaLop() + "(" + L.getTenLop() + ")");       
-           }
-       }
-    }
+//    public void fillComboBoxLop(){
+//       cboLop.removeAllItems();
+//       lopDAO lDAO = new lopDAO();
+//       
+//       int Index = cboKhoa.getSelectedIndex();
+//       if(Index >=0){
+//           dsLop = lDAO.selectByKhoa(dsKhoa.get(Index).getMaKhoa());
+//           for(Lop L: dsLop){
+//               cboLop.addItem(L.getMaLop() + "(" + L.getTenLop() + ")");       
+//           }
+//       }
+//    }
     // load mon hoc
     public void fillComboBoxMon(){
         cboMon.removeAllItems();
@@ -89,7 +90,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
             dsMon = mDAO.selectByKhoa(dsKhoa.get(Index).getMaKhoa());
             for(Mon m: dsMon){
                 cboMon.addItem(m.getMaMon() + "(" + m.getTenMon() + ")");
-                System.out.println(m.getMaMon());
+//                System.out.println(m.getMaMon());
             }
             
         }
@@ -109,17 +110,24 @@ public class QuanLiDiem extends javax.swing.JFrame {
             model.setRowCount(0);
             m = dsMon.get(Index);
             dsKQ = kqDAO.selectByMaMon(m.getMaMon());
+            List<Lop> dsLopDH = new ArrayList<>();
+            dsLopDH = lDAO.selectByKhoa(m.getMaKhoa());
+            String maLop = null;
+            for(Lop L:dsLopDH){
+                    maLop = L.getMaLop();
+            }
             
             for(int i =0; i<dsKQ.size() ;i++){
                 kq = dsKQ.get(i);
                 
 //                k = kDAO.selectById(m.getMaKhoa());
-                dsLop = lDAO.selectByKhoa(m.getMaKhoa());
-//                for(Lop L:dsLop){
-                      model.addRow(new Object[]{
-                        kq.getMaSV(),kq.getHoTen(),kq.getHanhKiem(),kq.getMaMon(),kq.getDiemTB(),kq.getDiemTongKet()
-                    });
-//                }   
+//                dsLop = lDAO.selectByKhoa(m.getMaKhoa());
+                
+                model.addRow(new Object[]{
+                        kq.getMaSV(),kq.getHoTen(),kq.getHanhKiem(),kq.getMaMon(),kq.getDiemTB(),kq.getDiemTongKet(),maLop
+                });
+                System.out.println("1" +maLop);
+                System.out.println("2" +kq.getMaSV());
             }
         }
         model.fireTableDataChanged();
@@ -253,11 +261,9 @@ public class QuanLiDiem extends javax.swing.JFrame {
         tblDiemSinhVien = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         cboKhoa = new javax.swing.JComboBox<>();
         cboMon = new javax.swing.JComboBox<>();
-        cboLop = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -289,13 +295,13 @@ public class QuanLiDiem extends javax.swing.JFrame {
 
         tblDiemSinhVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã sinh viên", "Họ và tên", "Hạnh Kiểm", "Mã môn", "Điểm trung bình", "Điểm tổng kết"
+                "Mã sinh viên", "Họ và tên", "Hạnh Kiểm", "Mã môn", "Điểm trung bình", "Điểm tổng kết", "Mã Lớp"
             }
         ));
         tblDiemSinhVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -326,8 +332,6 @@ public class QuanLiDiem extends javax.swing.JFrame {
 
         jLabel2.setText("Khoa:");
 
-        jLabel3.setText("Lớp:");
-
         jLabel4.setText("Môn học:");
 
         cboKhoa.addActionListener(new java.awt.event.ActionListener() {
@@ -354,13 +358,9 @@ public class QuanLiDiem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboMon, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel2)
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cboKhoa, 0, 249, Short.MAX_VALUE)
-                            .addComponent(cboLop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(cboKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -370,11 +370,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cboKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cboLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cboMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -595,7 +591,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
 
     private void cboKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboKhoaActionPerformed
         // TODO add your handling code here:
-        fillComboBoxLop();
+//        fillComboBoxLop();
         fillComboBoxMon();
     }//GEN-LAST:event_cboKhoaActionPerformed
 
@@ -668,12 +664,10 @@ public class QuanLiDiem extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboHanhKiem;
     private javax.swing.JComboBox<String> cboHocKy;
     private javax.swing.JComboBox<String> cboKhoa;
-    private javax.swing.JComboBox<String> cboLop;
     private javax.swing.JComboBox<String> cboMon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
