@@ -54,6 +54,7 @@ public class TimKiemDiem extends javax.swing.JFrame {
         tblDiem = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("THÔNG TIN ĐIỂM SINH VIÊN");

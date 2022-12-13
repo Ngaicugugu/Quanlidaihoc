@@ -81,6 +81,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 51, 51));
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
 

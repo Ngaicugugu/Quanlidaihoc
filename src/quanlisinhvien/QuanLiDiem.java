@@ -148,8 +148,8 @@ public class QuanLiDiem extends javax.swing.JFrame {
         DataValidation.validateEmp(txtHoTen, sb, "Cần Nhập Họ Tên");
         DataValidation.validateEmp(txtMaSV, sb, "Cần Nhập Mã Sinh Viên");
         if(sb.length()>0) {
-                MsgBox.showErrorDialog(null, sb.toString());
-                return;
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
         }
         dsKQ = kqDAO.selectAll();
         String maSV = txtMaSV.getText().trim();
@@ -204,8 +204,8 @@ public class QuanLiDiem extends javax.swing.JFrame {
         DataValidation.validateEmp(txtHoTen, sb, "Cần Nhập Họ Tên");
         DataValidation.validateEmp(txtMaSV, sb, "Cần Nhập Mã Sinh Viên");
         if(sb.length()>0) {
-                MsgBox.showErrorDialog(null, sb.toString());
-                return;
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
         }
         String maSV = txtMaSV.getText().trim();
         //xu ly chuoi
@@ -332,6 +332,7 @@ public class QuanLiDiem extends javax.swing.JFrame {
         btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));

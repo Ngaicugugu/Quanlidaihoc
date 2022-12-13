@@ -50,6 +50,7 @@ public class DangNhap extends javax.swing.JFrame {
      */
     public DangNhap() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -71,6 +72,8 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
 

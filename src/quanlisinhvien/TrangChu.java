@@ -8,6 +8,7 @@ package quanlisinhvien;
 import DAO.ThongKeDAO;
 import Utils.Auth;
 import Utils.MsgBox;
+import Utils.ximage;
 import javax.swing.JOptionPane;
 
 import quanlysv.DoiMatKhau;
@@ -112,6 +113,7 @@ public class TrangChu extends javax.swing.JFrame {
     public TrangChu() {
         initComponents();
         accessRight();
+        setIconImage(ximage.getAppIcon());
     }
 
     /**
@@ -149,6 +151,7 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mniQuanLiDiem = new javax.swing.JMenuItem();
         mnuTimKiem = new javax.swing.JMenu();
+        mniTimKiemDiem = new javax.swing.JMenuItem();
         mnuThongKe = new javax.swing.JMenu();
         mniTKTongKet = new javax.swing.JMenu();
         mniDSSinhVien = new javax.swing.JMenu();
@@ -156,6 +159,7 @@ public class TrangChu extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hệ Thống Quản Lý Trường Đại Học");
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
 
@@ -344,11 +348,15 @@ public class TrangChu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         mnuTimKiem.setText("Tìm kiếm");
-        mnuTimKiem.addActionListener(new java.awt.event.ActionListener() {
+
+        mniTimKiemDiem.setText("Tìm Kiếm Điểm");
+        mniTimKiemDiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuTimKiemActionPerformed(evt);
+                mniTimKiemDiemActionPerformed(evt);
             }
         });
+        mnuTimKiem.add(mniTimKiemDiem);
+
         jMenuBar1.add(mnuTimKiem);
 
         mnuThongKe.setText("Thống kê");
@@ -491,11 +499,6 @@ public class TrangChu extends javax.swing.JFrame {
         openQuanLiGiangVien();
     }//GEN-LAST:event_mniQuanLiGiangVienActionPerformed
 
-    private void mnuTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTimKiemActionPerformed
-        // TODO add your handling code here:
-        openTimKiemDiem();
-    }//GEN-LAST:event_mnuTimKiemActionPerformed
-
     private void btnQLSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSinhVienActionPerformed
         // TODO add your handling code here:
         openQuanLiSinhVien();
@@ -530,6 +533,11 @@ public class TrangChu extends javax.swing.JFrame {
         // TODO add your handling code here:
         dangXuat();
     }//GEN-LAST:event_mniDangXuatActionPerformed
+
+    private void mniTimKiemDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTimKiemDiemActionPerformed
+        // TODO add your handling code here:
+        openTimKiemDiem();
+    }//GEN-LAST:event_mniTimKiemDiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -596,6 +604,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniQuanLiNguoiDung;
     private javax.swing.JMenuItem mniQuanLiSinhVien;
     private javax.swing.JMenu mniTKTongKet;
+    private javax.swing.JMenuItem mniTimKiemDiem;
     private javax.swing.JMenu mnuThongKe;
     private javax.swing.JMenu mnuTimKiem;
     // End of variables declaration//GEN-END:variables

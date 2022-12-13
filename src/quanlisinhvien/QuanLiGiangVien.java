@@ -66,6 +66,7 @@ public class QuanLiGiangVien extends javax.swing.JFrame {
         btnmoi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 32)); // NOI18N
         jLabel1.setText("DANH SÁCH GIẢNG VIÊN");
