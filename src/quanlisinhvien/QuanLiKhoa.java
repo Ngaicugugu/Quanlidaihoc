@@ -7,6 +7,7 @@ package quanlisinhvien;
 import DAO.khoaDAO;
 import Entity.GiangVien;
 import Entity.Khoa;
+import Utils.Auth;
 import Utils.DataValidation;
 import Utils.MsgBox;
 import Utils.jdbchelper;
@@ -26,10 +27,19 @@ public class QuanLiKhoa extends javax.swing.JFrame {
      * Creates new form QuanLiKhoa
      */
     public QuanLiKhoa() {
+//        this.setLocationRelativeTo(null);
         initComponents();
         init();
     }
-
+    
+//    public void accessRight() {
+//        if (!Auth.isManager().equalsIgnoreCase("Admin")) {
+//            btnthem.setVisible(false);
+//            btnsua.setVisible(false);
+//            btnxoa.setVisible(false);
+//        }
+//    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -297,6 +307,7 @@ public class QuanLiKhoa extends javax.swing.JFrame {
     
     public void init(){
         Load();
+//        this.accessRight();
     }
     
     khoaDAO dao = new khoaDAO();

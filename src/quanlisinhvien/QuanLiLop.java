@@ -8,11 +8,11 @@ import DAO.khoaDAO;
 import DAO.lopDAO;
 import Entity.Khoa;
 import Entity.Lop;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import Utils.DataValidation;
-=======
+//=======
 import Utils.Auth;
->>>>>>> 5dd1cc1ef012ca9723a8ec8cbcba062fbff54607
+//>>>>>>> 5dd1cc1ef012ca9723a8ec8cbcba062fbff54607
 import Utils.MsgBox;
 import Utils.jdbchelper;
 import java.awt.HeadlessException;
@@ -21,7 +21,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
-/**
+/** 
  *
  * @author akbro
  */
@@ -31,13 +31,13 @@ public class QuanLiLop extends javax.swing.JFrame {
      * Creates new form QuanLiLop
      */
     // xu ly quyen truy cap
-    public void accessRight() {
-        if (!Auth.isManager().equalsIgnoreCase("Admin")) {
-            btnAdd.setVisible(false);
-            btnUpdate.setVisible(false);
-            btnDel.setVisible(false);
-        }
-    }
+//    public void accessRight() {
+//        if (!Auth.isManager().equalsIgnoreCase("Admin")) {
+//            btnAdd.setVisible(false);
+//            btnUpdate.setVisible(false);
+//            btnDel.setVisible(false);
+//        }
+//    }
     public QuanLiLop() {
         initComponents();
         init();
@@ -336,7 +336,7 @@ public class QuanLiLop extends javax.swing.JFrame {
     void init() {
         this.setLocationRelativeTo(null);
         this.Load();
-        accessRight();
+//        accessRight();
     }
 
     lopDAO lopdao = new lopDAO();
