@@ -381,6 +381,14 @@ public class QuanLiLop extends javax.swing.JFrame {
     }
 
     void Update() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmalop, sb, "Bạn chưa nhập mã lớp");
+        DataValidation.validateEmp(txtmakhoa, sb, "Bạn chưa nhập mã khoa");
+        DataValidation.validateEmp(txttenlop, sb, "Bạn chưa nhập Tên lớp");
+        if(sb.length() > 0){
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         Lop model = getForm();
         try {
             lopdao.update(model);
@@ -394,6 +402,12 @@ public class QuanLiLop extends javax.swing.JFrame {
     }
 
     void delete() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmalop, sb, "Vui lòng nhập mã lớp muốn xóa");
+        if(sb.length() > 0){
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         if (MsgBox.confirm(this, "Bạn thực sự muốn xóa người học này?")) {
             String makhoa = txtmalop.getText();
             try {

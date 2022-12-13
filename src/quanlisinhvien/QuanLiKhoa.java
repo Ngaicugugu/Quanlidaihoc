@@ -348,6 +348,14 @@ public class QuanLiKhoa extends javax.swing.JFrame {
     }
     
     void Update(){
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmakhoa, sb, "Bạn chưa nhập mã khoa");
+        DataValidation.validateEmp(txttenkhoa, sb, "Bạn chưa nhập Tên khoa");
+        
+        if(sb.length() > 0){
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         Khoa model = getForm();
         try{
             dao.update(model);
@@ -360,7 +368,15 @@ public class QuanLiKhoa extends javax.swing.JFrame {
         
     }
     
-    void delete() {
+    void delete() {  
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmakhoa, sb, "Vui lòng nhập mã khoa muốn xóa");
+        
+        if(sb.length() > 0){
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+        
         if (MsgBox.confirm(this, "Bạn thực sự muốn xóa người học này?")) {
             String makhoa = txtmakhoa.getText();
             try {
