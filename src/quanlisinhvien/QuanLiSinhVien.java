@@ -11,6 +11,7 @@ import Entity.Khoa;
 import Entity.Lop;
 import Entity.SinhVien;
 import Utils.Auth;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -32,6 +33,7 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
             btnDel.setVisible(false);
         }
     }
+
     public QuanLiSinhVien() {
         initComponents();
         init();
@@ -413,7 +415,7 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }//GEN-LAST:event_cbokhoaActionPerformed
 
     private void cbolopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbolopActionPerformed
-       filltotable();
+        filltotable();
     }//GEN-LAST:event_cbolopActionPerformed
 
     /**
@@ -548,6 +550,26 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void insert() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmasv, sb, "Không được bỏ trống mã sinh viên");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtdiachi, sb, "Không được bỏ trống địa chỉ");
+        DataValidation.validateEmp(txtngaysinh, sb, "Không được bỏ trống ngày sinh");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtmalop, sb, "Không được để trống mã lớp");
+        List<SinhVien> list = dao.selectAll();
+        for (SinhVien sv : list) {
+            if (sv.getMaSV().equalsIgnoreCase(txtmasv.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã sinh viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+
         SinhVien sv = getForm();
         try {
             dao.insert(sv);
@@ -560,6 +582,25 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void update() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmasv, sb, "Không được bỏ trống mã sinh viên");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtdiachi, sb, "Không được bỏ trống địa chỉ");
+        DataValidation.validateEmp(txtngaysinh, sb, "Không được bỏ trống ngày sinh");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtmalop, sb, "Không được để trống mã lớp");
+        List<SinhVien> list = dao.selectAll();
+        for (SinhVien sv : list) {
+            if (sv.getMaSV().equalsIgnoreCase(txtmasv.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã sinh viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         SinhVien sv = getForm();
         try {
             dao.update(sv);
@@ -572,6 +613,14 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void delete() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmasv, sb, "Không mã sinh viên để xóa");
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+        
         String masv = txtmasv.getText();
         try {
             dao.delete(masv);
@@ -584,7 +633,7 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void fillcbolop() {
-         try {
+        try {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbolop.getModel();
             model.removeAllElements();
             Khoa khoa = (Khoa) cbokhoa.getSelectedItem();
