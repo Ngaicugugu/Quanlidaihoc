@@ -7,6 +7,7 @@ package quanlisinhvien;
 import DAO.khoaDAO;
 import Entity.GiangVien;
 import Entity.Khoa;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import Utils.jdbchelper;
 import java.awt.HeadlessException;
@@ -316,6 +317,13 @@ public class QuanLiKhoa extends javax.swing.JFrame {
     }
 
     void insert() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmakhoa, sb, "Bạn chưa nhập mã khoa");
+        DataValidation.validateEmp(txttenkhoa, sb, "Bạn chưa nhập Tên khoa");
+        if(sb.length() > 0){
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         Khoa model = getForm();
         try {
             dao.insert(model);
