@@ -14,6 +14,7 @@ import Entity.Khoa;
 import Entity.Lop;
 import Entity.Mon;
 import Utils.Auth;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -126,18 +127,45 @@ public class QuanLiDiem extends javax.swing.JFrame {
                 model.addRow(new Object[]{
                         kq.getMaSV(),kq.getHoTen(),kq.getHanhKiem(),kq.getMaMon(),kq.getDiemTB(),kq.getDiemTongKet(),maLop
                 });
-                System.out.println("1" +maLop);
-                System.out.println("2" +kq.getMaSV());
+//                System.out.println("1" +maLop);
+//                System.out.println("2" +kq.getMaSV());
             }
         }
         model.fireTableDataChanged();
         
     }
+
+    
     //xu ly nut add
     public void addDiem(){
+        
         KetQua kq = getForm();
         KetQuaDAO kqDAO = new KetQuaDAO();
+        
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtDiemTB, sb, "Cần Nhập Điểm Trung Bình");
+        DataValidation.validateEmp(txtDiemTongKet, sb, "Cần Nhập Điểm Tổng kết");
+        DataValidation.validateEmp(txtHoTen, sb, "Cần Nhập Họ Tên");
+        DataValidation.validateEmp(txtMaSV, sb, "Cần Nhập Mã Sinh Viên");
+        if(sb.length()>0) {
+                MsgBox.showErrorDialog(null, sb.toString());
+                return;
+        }
+        dsKQ = kqDAO.selectAll();
+        String maSV = txtMaSV.getText().trim();
+         // xu ly chuoi
+        String maMon1 = (String) cboMon.getSelectedItem();
+        int I = maMon1.indexOf("(");
+        String maMon = maMon1.substring(0, I);
+
+        for(KetQua kqc :dsKQ){
+            if(maSV.equals(kqc.getMaSV()) && maMon.equals(kqc.getMaMon())){
+                MsgBox.showErrorDialog(null, "Dữ Liệu Không Thể Lưu Được Vì Sinh Viên Này Đã Đăng Ký Học Trước Đó Rồi");
+                return;
+            }
+        }
         try {
+           
             kqDAO.insert(kq);
             this.loadDataToBangDiemSV();
             clearForm();
@@ -148,6 +176,15 @@ public class QuanLiDiem extends javax.swing.JFrame {
     }
     //xu ly nut update
     public void updateDiem(){
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtDiemTB, sb, "Cần Nhập Điểm Trung Bình");
+        DataValidation.validateEmp(txtDiemTongKet, sb, "Cần Nhập Điểm Tổng kết");
+        DataValidation.validateEmp(txtHoTen, sb, "Cần Nhập Họ Tên");
+        DataValidation.validateEmp(txtMaSV, sb, "Cần Nhập Mã Sinh Viên");
+        if(sb.length()>0) {
+                MsgBox.showErrorDialog(null, sb.toString());
+                return;
+        }
         KetQua kq = getForm();
         KetQuaDAO kqDAO = new KetQuaDAO();
         try {
@@ -161,6 +198,15 @@ public class QuanLiDiem extends javax.swing.JFrame {
     }
     // xu ly nut del
     public void deleteDiem(){
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtDiemTB, sb, "Cần Nhập Điểm Trung Bình");
+        DataValidation.validateEmp(txtDiemTongKet, sb, "Cần Nhập Điểm Tổng kết");
+        DataValidation.validateEmp(txtHoTen, sb, "Cần Nhập Họ Tên");
+        DataValidation.validateEmp(txtMaSV, sb, "Cần Nhập Mã Sinh Viên");
+        if(sb.length()>0) {
+                MsgBox.showErrorDialog(null, sb.toString());
+                return;
+        }
         String maSV = txtMaSV.getText().trim();
         //xu ly chuoi
         String maMon1 = (String) cboMon.getSelectedItem();

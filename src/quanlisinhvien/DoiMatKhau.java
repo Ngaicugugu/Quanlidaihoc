@@ -7,6 +7,7 @@ package quanlysv;
 import DAO.LoginUserDAO;
 import Entity.LoginUser;
 import Utils.Auth;
+import Utils.DataValidation;
 import Utils.MsgBox;
 
 /**
@@ -23,6 +24,16 @@ public class DoiMatKhau extends javax.swing.JFrame {
 		String matKhau = new String(txtMatKhauCu.getPassword());
 		String matKhauMoi = new String(txtMatKhauMoi.getPassword());
 		String xacNhanMK = new String(txtXacNhanMatKhau.getPassword());
+                StringBuilder sb = new StringBuilder();
+                DataValidation.validateEmp(txtUser, sb, "Cần nhập tên tài khoản");
+                DataValidation.validateEmp(txtMatKhauCu, sb, "Cần nhập mật khẩu cũ");
+                DataValidation.validateEmp(txtMatKhauMoi, sb, "Cần nhập mật khẩu mới");
+                DataValidation.validateEmp(txtXacNhanMatKhau, sb, "Cần xác nhận mật khẩu mới");
+                if(sb.length()>0) {
+                    MsgBox.showErrorDialog(null, sb.toString());
+                    return;
+                }
+                
                 LoginUserDAO DAO = new LoginUserDAO();
                 LoginUser user = DAO.selectById(User);
 		if(!User.equals(user.getLoginUser())) {
