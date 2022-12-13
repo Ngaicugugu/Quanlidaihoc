@@ -6,6 +6,7 @@ package quanlisinhvien;
 
 import DAO.LoginUserDAO;
 import Entity.LoginUser;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -293,7 +294,7 @@ public class QuanLiNGuoiDung extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbltaikhoanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbltaikhoanMousePressed
-          if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             this.row = tbltaikhoan.getSelectedRow();
             this.edit();
         }
@@ -448,6 +449,27 @@ public class QuanLiNGuoiDung extends javax.swing.JFrame {
     }
 
     void insert() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txttk, sb, "Không được bỏ trống tài khoản");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtmatkhau, sb, "Không được bỏ trống mật khẩu");
+        DataValidation.validateEmp(txtphone, sb, "Không được bỏ trống số điện thoại");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtemail, sb, "Không được để trống email");
+        DataValidation.validateEmp(txtquyen, sb, "Không được bỏ trống quyền");
+        List<LoginUser> list = dao.selectAll();
+
+        for (LoginUser lg : list) {
+            if (lg.getLoginUser().equalsIgnoreCase(txttk.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng tên tài khoản");
+                return;
+            }
+        }
+
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         LoginUser lg = getForm();
         try {
             dao.insert(lg);
@@ -460,6 +482,28 @@ public class QuanLiNGuoiDung extends javax.swing.JFrame {
     }
 
     void update() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txttk, sb, "Không được bỏ trống tài khoản");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtmatkhau, sb, "Không được bỏ trống mật khẩu");
+        DataValidation.validateEmp(txtphone, sb, "Không được bỏ trống số điện thoại");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtemail, sb, "Không được để trống email");
+        DataValidation.validateEmp(txtquyen, sb, "Không được bỏ trống quyền");
+        List<LoginUser> list = dao.selectAll();
+
+        for (LoginUser lg : list) {
+            if (lg.getLoginUser().equalsIgnoreCase(txttk.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng tên tài khoản");
+                return;
+            }
+        }
+
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+
         LoginUser lg = getForm();
         try {
             dao.update(lg);
@@ -472,6 +516,12 @@ public class QuanLiNGuoiDung extends javax.swing.JFrame {
     }
 
     void delete() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txttk, sb, "Vui lòng chọn tài khoản để xóa");
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         String tentk = txttk.getText();
         try {
             dao.delete(tentk);
