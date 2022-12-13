@@ -127,7 +127,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="txthocki" pref="160" max="32767" attributes="0"/>
                       <Component id="txtgv" pref="160" max="32767" attributes="0"/>
-                      <Component id="cbomakhoa" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtmakhoa" alignment="0" pref="160" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
@@ -150,14 +150,14 @@
                       <Component id="txttenmon" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txthocki" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtsotiet" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbomakhoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtmakhoa" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -203,19 +203,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txthocki">
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbomakhoa">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbomakhoaItemStateChanged"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbomakhoaActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
+        <Component class="javax.swing.JTextField" name="txtmakhoa">
         </Component>
       </SubComponents>
     </Container>

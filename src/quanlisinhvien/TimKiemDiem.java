@@ -10,6 +10,7 @@ import DAO.timdiemDAO;
 import Entity.KetQua;
 import Entity.Khoa;
 import Entity.Mon;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -342,6 +343,14 @@ public class TimKiemDiem extends javax.swing.JFrame {
         }
     }
     private void timKiem() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txttimkiem, sb, "Không được bỏ trống mã sinh viên");
+        List<KetQua> list = dao.selectAll();
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         this.filltotable();
         this.row = 1;
     }

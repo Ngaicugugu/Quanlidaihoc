@@ -11,6 +11,7 @@ import Entity.GiangVien;
 import Entity.Khoa;
 import Entity.Mon;
 import Utils.Auth;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import Utils.ximage;
 import java.io.File;
@@ -28,7 +29,6 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
     /**
      * Creates new form QuanLiMonHoc
      */
-    
     public QuanLiMonHoc() {
         initComponents();
         init();
@@ -56,7 +56,7 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
         txtsotiet = new javax.swing.JTextField();
         txtgv = new javax.swing.JTextField();
         txthocki = new javax.swing.JTextField();
-        cbomakhoa = new javax.swing.JComboBox<>();
+        txtmakhoa = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblmon = new javax.swing.JTable();
@@ -84,17 +84,6 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
         jLabel6.setText("Học kì:");
 
         jLabel7.setText("Mã khoa:");
-
-        cbomakhoa.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbomakhoaItemStateChanged(evt);
-            }
-        });
-        cbomakhoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbomakhoaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +113,7 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txthocki, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(txtgv, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(cbomakhoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtmakhoa, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,13 +131,13 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(txttenmon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txthocki, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7)
                     .addComponent(txtsotiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbomakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                    .addComponent(txtmakhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -277,11 +266,6 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbomakhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbomakhoaActionPerformed
-        // TODO add your handling code here:
-        this.filltotable();
-    }//GEN-LAST:event_cbomakhoaActionPerformed
-
     private void tblmonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblmonMousePressed
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
@@ -289,10 +273,6 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
             this.edit();
         }
     }//GEN-LAST:event_tblmonMousePressed
-
-    private void cbomakhoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbomakhoaItemStateChanged
-        // TODO add your handling code here:       
-    }//GEN-LAST:event_cbomakhoaItemStateChanged
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -353,7 +333,6 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cbomakhoa;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -368,6 +347,7 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
     private javax.swing.JTable tblmon;
     private javax.swing.JTextField txtgv;
     private javax.swing.JTextField txthocki;
+    private javax.swing.JTextField txtmakhoa;
     private javax.swing.JTextField txtmamon;
     private javax.swing.JTextField txtsotiet;
     private javax.swing.JTextField txttenmon;
@@ -375,6 +355,7 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
     monDAO dao = new monDAO();
     khoaDAO kdao = new khoaDAO();
     int row = -1;
+
     public void accessRight() {
         if (!Auth.isManager().equalsIgnoreCase("Admin")) {
             btnAdd.setVisible(false);
@@ -382,7 +363,28 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
             btnDel.setVisible(false);
         }
     }
+
     void insert() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmamon, sb, "Không được bỏ trống mã môn");
+        DataValidation.validateEmp(txttenmon, sb, "Không được bỏ trống tên môn");
+        DataValidation.validateEmp(txtsotiet, sb, "Không được bỏ trống số điện thoại");
+        DataValidation.validateEmp(txtgv, sb, "Không được bỏ trống mã gv");
+        DataValidation.validateEmp(txthocki, sb, "Không được để trống học kì");
+        DataValidation.validateEmp(txtmakhoa, sb, "Không được bỏ trống mã khoa");
+        List<Mon> list = dao.selectAll();
+        
+        for (Mon m : list) {
+            if (m.getMaGV().equalsIgnoreCase(txtmamon.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã giảng viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         Mon m = getForm();
         try {
             dao.insert(m);
@@ -395,6 +397,26 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
     }
 
     void update() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmamon, sb, "Không được bỏ trống mã môn");
+        DataValidation.validateEmp(txttenmon, sb, "Không được bỏ trống tên môn");
+        DataValidation.validateEmp(txtsotiet, sb, "Không được bỏ trống số điện thoại");
+        DataValidation.validateEmp(txtgv, sb, "Không được bỏ trống mã gv");
+        DataValidation.validateEmp(txthocki, sb, "Không được để trống học kì");
+        DataValidation.validateEmp(txtmakhoa, sb, "Không được bỏ trống mã khoa");
+        List<Mon> list = dao.selectAll();
+        
+        for (Mon m : list) {
+            if (m.getMaGV().equalsIgnoreCase(txtmamon.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã giảng viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         Mon m = getForm();
         try {
             dao.update(m);
@@ -432,11 +454,12 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
 
     void setForm(Mon m) {
         txtmamon.setText(m.getMaMon());
-        txttenmon.setText(m.getTenMon());        
+        txttenmon.setText(m.getTenMon());
         txtsotiet.setText(String.valueOf(m.getSoTiet()));
         txtgv.setText(m.getMaGV());
         txthocki.setText(m.getHocKi());
-        cbomakhoa.setSelectedItem(kdao.selectById(m.getMaKhoa()));
+        txtmakhoa.setText(m.getMaKhoa());
+//        cbomakhoa.setSelectedItem(kdao.selectById(m.getMaKhoa()));
     }
 
     Mon getForm() {
@@ -446,14 +469,15 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
         m.setSoTiet(Integer.valueOf(txtsotiet.getText()));
         m.setMaGV(txtgv.getText());
         m.setHocKi(txthocki.getText());
-        m.setMaKhoa(cbomakhoa.getToolTipText());
+        m.setMaKhoa(txtmakhoa.getText());
+//        m.setMaKhoa(cbomakhoa.getToolTipText());
         return m;
     }
 
     private void init() {
         this.setLocationRelativeTo(null);
         this.filltotable();
-        this.fillComboBoxMaKhoa();
+//        this.fillComboBoxMaKhoa();
         this.row = -1;
         accessRight();
     }
@@ -462,16 +486,16 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblmon.getModel();
         model.setRowCount(0);
         try {
-            Khoa khoa = (Khoa) cbomakhoa.getSelectedItem();
+//            Khoa khoa = (Khoa) cbomakhoa.getSelectedItem();
 //            List<Mon> list = dao.selectByKhoa(khoa.getMaKhoa());
             List<Mon> list = dao.selectAll();
             for (Mon m : list) {
                 Object[] row = {
-                    m.getMaMon(), 
-                    m.getTenMon(), 
-                    m.getSoTiet(), 
-                    m.getMaGV(), 
-                    m.getHocKi(), 
+                    m.getMaMon(),
+                    m.getTenMon(),
+                    m.getSoTiet(),
+                    m.getMaGV(),
+                    m.getHocKi(),
                     m.getMaKhoa()
                 };
                 model.addRow(row);
@@ -481,12 +505,13 @@ public class QuanLiMonHoc extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    void fillComboBoxMaKhoa(){
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cbomakhoa.getModel();
-        model.removeAllElements();
-        List<Khoa> list = kdao.selectAll();
-        for(Khoa k : list){
-            model.addElement(k);
-        }
-    }
+
+//    void fillComboBoxMaKhoa() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cbomakhoa.getModel();
+//        model.removeAllElements();
+//        List<Khoa> list = kdao.selectAll();
+//        for (Khoa k : list) {
+//            model.addElement(k);
+//        }
+//    }
 }
