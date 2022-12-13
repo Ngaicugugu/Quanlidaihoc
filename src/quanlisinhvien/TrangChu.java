@@ -46,9 +46,10 @@ public class TrangChu extends javax.swing.JFrame {
             mniQuanLiNguoiDung.setVisible(false);
             mniKhoa.setVisible(false);
             mniQuanLiGiangVien.setVisible(false);
-            btnQuanLiGiangVien.setVisible(false);
-            btnQuanLiKhoa.setVisible(false);
+            btnQLGiangVien.setVisible(false);
+            btnQLKhoa.setVisible(false);
             mnuThongKe.setVisible(false);
+            mniQuanLiNguoiDung.setVisible(false);
         }
     }
     // mo quan li diem
@@ -123,34 +124,34 @@ public class TrangChu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        btnQuanLiGiangVien = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        btnQuanLiKhoa = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnQLSinhVien = new javax.swing.JButton();
+        btnQLGiangVien = new javax.swing.JButton();
+        btnQuanLyDiemSV = new javax.swing.JButton();
+        btnQLKhoa = new javax.swing.JButton();
+        btnQLLop = new javax.swing.JButton();
+        btnQLMonHoc = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mniDangNhap = new javax.swing.JMenuItem();
         mniDoiMatKhau = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mniDangXuat = new javax.swing.JMenuItem();
         mniQuanLiNguoiDung = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        mniExit = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        mniMon = new javax.swing.JMenuItem();
         mniKhoa = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        mniLop = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        mniQuanLiSinhVien = new javax.swing.JMenuItem();
         mniQuanLiGiangVien = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        mniQuanLiDiem = new javax.swing.JMenuItem();
+        mnuTimKiem = new javax.swing.JMenu();
         mnuThongKe = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
+        mniTKTongKet = new javax.swing.JMenu();
+        mniDSSinhVien = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
 
@@ -158,45 +159,45 @@ public class TrangChu extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
 
-        jButton1.setText("QL SINH VIÊN");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnQLSinhVien.setText("QL SINH VIÊN");
+        btnQLSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnQLSinhVienActionPerformed(evt);
             }
         });
 
-        btnQuanLiGiangVien.setText("QL GIẢNG VIÊN");
-        btnQuanLiGiangVien.addActionListener(new java.awt.event.ActionListener() {
+        btnQLGiangVien.setText("QL GIẢNG VIÊN");
+        btnQLGiangVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuanLiGiangVienActionPerformed(evt);
+                btnQLGiangVienActionPerformed(evt);
             }
         });
 
-        jButton3.setText("QL ĐIỂM SV");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnQuanLyDiemSV.setText("QL ĐIỂM SV");
+        btnQuanLyDiemSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnQuanLyDiemSVActionPerformed(evt);
             }
         });
 
-        btnQuanLiKhoa.setText("QL KHOA");
-        btnQuanLiKhoa.addActionListener(new java.awt.event.ActionListener() {
+        btnQLKhoa.setText("QL KHOA");
+        btnQLKhoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuanLiKhoaActionPerformed(evt);
+                btnQLKhoaActionPerformed(evt);
             }
         });
 
-        jButton5.setText("QL LỚP");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnQLLop.setText("QL LỚP");
+        btnQLLop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnQLLopActionPerformed(evt);
             }
         });
 
-        jButton6.setText("QL MÔN HỌC");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnQLMonHoc.setText("QL MÔN HỌC");
+        btnQLMonHoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnQLMonHocActionPerformed(evt);
             }
         });
 
@@ -209,12 +210,12 @@ public class TrangChu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuanLiGiangVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuanLiKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnQLSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQLGiangVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuanLyDiemSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQLKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQLLop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQLMonHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addContainerGap())
@@ -225,30 +226,30 @@ public class TrangChu extends javax.swing.JFrame {
                 .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnQLSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(btnQuanLiGiangVien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnQLGiangVien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnQuanLyDiemSV, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(btnQuanLiKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnQLKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnQLLop, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnQLMonHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
                 .addGap(64, 64, 64))
         );
 
         jMenu2.setText("Hệ thống");
 
-        jMenuItem1.setText("Đăng nhập");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mniDangNhap.setText("Đăng nhập");
+        mniDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mniDangNhapActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(mniDangNhap);
 
         mniDoiMatKhau.setText("Đổi mật khẩu");
         mniDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
@@ -258,13 +259,13 @@ public class TrangChu extends javax.swing.JFrame {
         });
         jMenu2.add(mniDoiMatKhau);
 
-        jMenuItem3.setText("Đăng xuất");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mniDangXuat.setText("Đăng xuất");
+        mniDangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mniDangXuatActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(mniDangXuat);
 
         mniQuanLiNguoiDung.setText("Quản lí người dùng");
         mniQuanLiNguoiDung.addActionListener(new java.awt.event.ActionListener() {
@@ -275,25 +276,25 @@ public class TrangChu extends javax.swing.JFrame {
         jMenu2.add(mniQuanLiNguoiDung);
         jMenu2.add(jSeparator1);
 
-        jMenuItem5.setText("Exit");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        mniExit.setText("Exit");
+        mniExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                mniExitActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        jMenu2.add(mniExit);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Danh mục");
 
-        jMenuItem6.setText("Môn");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        mniMon.setText("Môn");
+        mniMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                mniMonActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jMenu3.add(mniMon);
 
         mniKhoa.setText("Khoa");
         mniKhoa.addActionListener(new java.awt.event.ActionListener() {
@@ -303,25 +304,25 @@ public class TrangChu extends javax.swing.JFrame {
         });
         jMenu3.add(mniKhoa);
 
-        jMenuItem8.setText("Lớp");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        mniLop.setText("Lớp");
+        mniLop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                mniLopActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
+        jMenu3.add(mniLop);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Quản lí");
 
-        jMenuItem9.setText("Quản lí sinh viên");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        mniQuanLiSinhVien.setText("Quản lí sinh viên");
+        mniQuanLiSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                mniQuanLiSinhVienActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem9);
+        jMenu4.add(mniQuanLiSinhVien);
 
         mniQuanLiGiangVien.setText("Quản lí giảng viên");
         mniQuanLiGiangVien.addActionListener(new java.awt.event.ActionListener() {
@@ -332,55 +333,55 @@ public class TrangChu extends javax.swing.JFrame {
         jMenu4.add(mniQuanLiGiangVien);
         jMenu4.add(jSeparator2);
 
-        jMenuItem11.setText("Quản lí điểm");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        mniQuanLiDiem.setText("Quản lí điểm");
+        mniQuanLiDiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                mniQuanLiDiemActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem11);
+        jMenu4.add(mniQuanLiDiem);
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Tìm kiếm");
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+        mnuTimKiem.setText("Tìm kiếm");
+        mnuTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
+                mnuTimKiemActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnuTimKiem);
 
         mnuThongKe.setText("Thống kê");
 
-        jMenu1.setText("Điểm tổng kết sinh viên");
-        jMenu1.addMenuListener(new javax.swing.event.MenuListener() {
+        mniTKTongKet.setText("Điểm tổng kết sinh viên");
+        mniTKTongKet.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
             public void menuSelected(javax.swing.event.MenuEvent evt) {
-                jMenu1MenuSelected(evt);
+                mniTKTongKetMenuSelected(evt);
             }
         });
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mniTKTongKet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                mniTKTongKetMouseClicked(evt);
             }
         });
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        mniTKTongKet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                mniTKTongKetActionPerformed(evt);
             }
         });
-        mnuThongKe.add(jMenu1);
+        mnuThongKe.add(mniTKTongKet);
 
-        jMenu9.setText("Danh sách sinh viên");
-        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+        mniDSSinhVien.setText("Danh sách sinh viên");
+        mniDSSinhVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu9MouseClicked(evt);
+                mniDSSinhVienMouseClicked(evt);
             }
         });
-        mnuThongKe.add(jMenu9);
+        mnuThongKe.add(mniDSSinhVien);
 
         jMenuBar1.add(mnuThongKe);
 
@@ -419,18 +420,19 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void mniQuanLiNguoiDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQuanLiNguoiDungActionPerformed
         // TODO add your handling code here:
+        openQuanLiNguoiDung();
     }//GEN-LAST:event_mniQuanLiNguoiDungActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void mniQuanLiDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQuanLiDiemActionPerformed
         // TODO add your handling code here:
         openQuanLiDiem();
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_mniQuanLiDiemActionPerformed
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void mniTKTongKetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTKTongKetActionPerformed
 
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_mniTKTongKetActionPerformed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void mniTKTongKetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mniTKTongKetMouseClicked
         ThongKeDAO tkdao = new ThongKeDAO();
         tkdao.selectAll();
         while (true) {
@@ -438,13 +440,13 @@ public class TrangChu extends javax.swing.JFrame {
             break;
         }
         JOptionPane.showMessageDialog(this, "Thống kê tổng kết điểm thành công. Thư mục được chứa ở D://thongketk.xlsx");
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_mniTKTongKetMouseClicked
 
-    private void jMenu1MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu1MenuSelected
+    private void mniTKTongKetMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_mniTKTongKetMenuSelected
 
-    }//GEN-LAST:event_jMenu1MenuSelected
+    }//GEN-LAST:event_mniTKTongKetMenuSelected
 
-    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
+    private void mniDSSinhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mniDSSinhVienMouseClicked
         ThongKeDAO dao = new ThongKeDAO();
         dao.selectAllSV();
         while (true) {
@@ -452,82 +454,82 @@ public class TrangChu extends javax.swing.JFrame {
             break;
         }
         JOptionPane.showMessageDialog(this, "Thống kê danh sách sinh viên thành công. Thư mục được chứa ở D://thongkedssv.xlsx");
-    }//GEN-LAST:event_jMenu9MouseClicked
+    }//GEN-LAST:event_mniDSSinhVienMouseClicked
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_mniExitActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mniDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangNhapActionPerformed
         // TODO add your handling code here:
         openDangNhap();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mniDangNhapActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void mniMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMonActionPerformed
         // TODO add your handling code here:
         openQuanLiMonHoc();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_mniMonActionPerformed
 
     private void mniKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhoaActionPerformed
         // TODO add your handling code here:
         openQuanLiKhoa();
     }//GEN-LAST:event_mniKhoaActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void mniLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLopActionPerformed
         // TODO add your handling code here:
         openQuanLiLop();
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_mniLopActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void mniQuanLiSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQuanLiSinhVienActionPerformed
         // TODO add your handling code here:
         openQuanLiSinhVien();
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_mniQuanLiSinhVienActionPerformed
 
     private void mniQuanLiGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQuanLiGiangVienActionPerformed
         // TODO add your handling code here:
         openQuanLiGiangVien();
     }//GEN-LAST:event_mniQuanLiGiangVienActionPerformed
 
-    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+    private void mnuTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTimKiemActionPerformed
         // TODO add your handling code here:
         openTimKiemDiem();
-    }//GEN-LAST:event_jMenu5ActionPerformed
+    }//GEN-LAST:event_mnuTimKiemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnQLSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSinhVienActionPerformed
         // TODO add your handling code here:
         openQuanLiSinhVien();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnQLSinhVienActionPerformed
 
-    private void btnQuanLiGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiGiangVienActionPerformed
+    private void btnQLGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLGiangVienActionPerformed
         // TODO add your handling code here:
         openQuanLiGiangVien();
-    }//GEN-LAST:event_btnQuanLiGiangVienActionPerformed
+    }//GEN-LAST:event_btnQLGiangVienActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnQuanLyDiemSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyDiemSVActionPerformed
         // TODO add your handling code here:
         openQuanLiDiem();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnQuanLyDiemSVActionPerformed
 
-    private void btnQuanLiKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiKhoaActionPerformed
+    private void btnQLKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhoaActionPerformed
         // TODO add your handling code here:
         openQuanLiKhoa();
-    }//GEN-LAST:event_btnQuanLiKhoaActionPerformed
+    }//GEN-LAST:event_btnQLKhoaActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnQLLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLLopActionPerformed
         // TODO add your handling code here:
         openQuanLiLop();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnQLLopActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnQLMonHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMonHocActionPerformed
         // TODO add your handling code here:
         openQuanLiMonHoc();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnQLMonHocActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
         // TODO add your handling code here:
         dangXuat();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_mniDangXuatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -565,36 +567,36 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnQuanLiGiangVien;
-    private javax.swing.JButton btnQuanLiKhoa;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnQLGiangVien;
+    private javax.swing.JButton btnQLKhoa;
+    private javax.swing.JButton btnQLLop;
+    private javax.swing.JButton btnQLMonHoc;
+    private javax.swing.JButton btnQLSinhVien;
+    private javax.swing.JButton btnQuanLyDiemSV;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenu mniDSSinhVien;
+    private javax.swing.JMenuItem mniDangNhap;
+    private javax.swing.JMenuItem mniDangXuat;
     private javax.swing.JMenuItem mniDoiMatKhau;
+    private javax.swing.JMenuItem mniExit;
     private javax.swing.JMenuItem mniKhoa;
+    private javax.swing.JMenuItem mniLop;
+    private javax.swing.JMenuItem mniMon;
+    private javax.swing.JMenuItem mniQuanLiDiem;
     private javax.swing.JMenuItem mniQuanLiGiangVien;
     private javax.swing.JMenuItem mniQuanLiNguoiDung;
+    private javax.swing.JMenuItem mniQuanLiSinhVien;
+    private javax.swing.JMenu mniTKTongKet;
     private javax.swing.JMenu mnuThongKe;
+    private javax.swing.JMenu mnuTimKiem;
     // End of variables declaration//GEN-END:variables
 }

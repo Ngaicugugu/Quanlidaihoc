@@ -60,7 +60,7 @@ public class QuanLiNGuoiDung extends javax.swing.JFrame {
         btnxoa = new javax.swing.JButton();
         btnmoi = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 32)); // NOI18N
         jLabel1.setText("QUẢN LÍ NGƯỜI DÙNG");
@@ -312,7 +312,7 @@ public class QuanLiNGuoiDung extends javax.swing.JFrame {
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void btnthoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthoatActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnthoatActionPerformed
 
     private void btnmoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmoiActionPerformed
