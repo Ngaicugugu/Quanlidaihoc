@@ -1,7 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
+
 package quanlisinhvien;
 
 import DAO.LoginUserDAO;
@@ -52,6 +50,7 @@ public class DangNhap extends javax.swing.JFrame {
      */
     public DangNhap() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -73,6 +72,8 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
 
@@ -82,8 +83,10 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Unlock.png"))); // NOI18N
         jLabel2.setText("Mật khẩu:");
 
+        txtLoginUser.setText("phanxuanha");
         txtLoginUser.setPreferredSize(new java.awt.Dimension(56, 27));
 
+        txtPass.setText("123");
         txtPass.setPreferredSize(new java.awt.Dimension(191, 19));
 
         btnLogin.setText("Đăng nhập");

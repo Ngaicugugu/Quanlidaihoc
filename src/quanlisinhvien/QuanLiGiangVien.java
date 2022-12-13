@@ -7,6 +7,7 @@ package quanlisinhvien;
 import DAO.giangvienDAO;
 import Entity.GiangVien;
 import Utils.Auth;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import Utils.ximage;
 import java.io.File;
@@ -64,7 +65,8 @@ public class QuanLiGiangVien extends javax.swing.JFrame {
         btnthoat = new javax.swing.JButton();
         btnmoi = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 32)); // NOI18N
         jLabel1.setText("DANH SÁCH GIẢNG VIÊN");
@@ -292,7 +294,7 @@ public class QuanLiGiangVien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnthoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthoatActionPerformed
-       System.exit(0);
+       this.dispose();
     }//GEN-LAST:event_btnthoatActionPerformed
 
     private void lblanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblanhMouseClicked
@@ -398,6 +400,25 @@ public class QuanLiGiangVien extends javax.swing.JFrame {
     }
 
     void insert() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmagv, sb, "Không được bỏ trống mã giảng viên");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtphone, sb, "Không được bỏ trống số điện thoại");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtemail, sb, "Không được để trống email");
+        List<GiangVien> list = dao.selectAll();
+        
+        for (GiangVien gv : list) {
+            if (gv.getMaGV().equalsIgnoreCase(txtmagv.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã giảng viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         GiangVien gv = getForm();
         try {
             dao.insert(gv);
@@ -410,6 +431,26 @@ public class QuanLiGiangVien extends javax.swing.JFrame {
     }
 
     void update() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmagv, sb, "Không được bỏ trống mã giảng viên");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtphone, sb, "Không được bỏ trống số điện thoại");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtemail, sb, "Không được để trống email");
+        List<GiangVien> list = dao.selectAll();
+        
+        for (GiangVien gv : list) {
+            if (gv.getMaGV().equalsIgnoreCase(txtmagv.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã giảng viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+        
         GiangVien gv = getForm();
         try {
             dao.update(gv);
@@ -422,6 +463,13 @@ public class QuanLiGiangVien extends javax.swing.JFrame {
     }
 
     void delete() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmagv, sb, "Vui lòng chọn mã giảng viên để xóa");
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+        
         String magv = txtmagv.getText();
         try {
             dao.delete(magv);

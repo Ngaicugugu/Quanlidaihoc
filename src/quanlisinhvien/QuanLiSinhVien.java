@@ -10,6 +10,8 @@ import DAO.sinhvienDAO;
 import Entity.Khoa;
 import Entity.Lop;
 import Entity.SinhVien;
+import Utils.Auth;
+import Utils.DataValidation;
 import Utils.MsgBox;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -24,6 +26,14 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     /**
      * Creates new form QuanLiSinhVien
      */
+    public void accessRight() {
+        if (!Auth.isManager().equalsIgnoreCase("Admin")) {
+            btnAdd.setVisible(false);
+            btnUpdate.setVisible(false);
+            btnDel.setVisible(false);
+        }
+    }
+
     public QuanLiSinhVien() {
         initComponents();
         init();
@@ -63,12 +73,13 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblsinhvien = new javax.swing.JTable();
         btnthoat = new javax.swing.JButton();
-        btnthem = new javax.swing.JButton();
-        btnsua = new javax.swing.JButton();
-        btnxoa = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 32)); // NOI18N
         jLabel1.setText("QUẢN LÍ THÔNG TIN SINH VIÊN");
@@ -275,27 +286,27 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
             }
         });
 
-        btnthem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Add.png"))); // NOI18N
-        btnthem.setText("Thêm");
-        btnthem.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Add.png"))); // NOI18N
+        btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnthemActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        btnsua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Edit.png"))); // NOI18N
-        btnsua.setText("Sửa");
-        btnsua.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Edit.png"))); // NOI18N
+        btnUpdate.setText("Sửa");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsuaActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
-        btnxoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
-        btnxoa.setText("Xóa");
-        btnxoa.addActionListener(new java.awt.event.ActionListener() {
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
+        btnDel.setText("Xóa");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnxoaActionPerformed(evt);
+                btnDelActionPerformed(evt);
             }
         });
 
@@ -324,9 +335,9 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnxoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnsua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnthem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnthoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -346,11 +357,11 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnthem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnsua)
+                        .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
-                        .addComponent(btnxoa)
+                        .addComponent(btnDel)
                         .addGap(18, 18, 18)
                         .addComponent(btnthoat)
                         .addGap(22, 22, 22)))
@@ -384,20 +395,20 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblsinhvienMousePressed
 
-    private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         this.insert();
-    }//GEN-LAST:event_btnthemActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         this.update();
-    }//GEN-LAST:event_btnsuaActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         this.delete();
-    }//GEN-LAST:event_btnxoaActionPerformed
+    }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnthoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthoatActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnthoatActionPerformed
 
     private void cbokhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbokhoaActionPerformed
@@ -405,7 +416,7 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }//GEN-LAST:event_cbokhoaActionPerformed
 
     private void cbolopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbolopActionPerformed
-       filltotable();
+        filltotable();
     }//GEN-LAST:event_cbolopActionPerformed
 
     /**
@@ -444,10 +455,10 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnsua;
-    private javax.swing.JButton btnthem;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnthoat;
-    private javax.swing.JButton btnxoa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbokhoa;
     private javax.swing.JComboBox<String> cbolop;
@@ -481,6 +492,7 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        accessRight();
         fillcbokhoa();
         this.row = -1;
     }
@@ -539,6 +551,26 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void insert() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmasv, sb, "Không được bỏ trống mã sinh viên");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtdiachi, sb, "Không được bỏ trống địa chỉ");
+        DataValidation.validateEmp(txtngaysinh, sb, "Không được bỏ trống ngày sinh");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtmalop, sb, "Không được để trống mã lớp");
+        List<SinhVien> list = dao.selectAll();
+        for (SinhVien sv : list) {
+            if (sv.getMaSV().equalsIgnoreCase(txtmasv.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã sinh viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+
         SinhVien sv = getForm();
         try {
             dao.insert(sv);
@@ -551,6 +583,25 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void update() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmasv, sb, "Không được bỏ trống mã sinh viên");
+        DataValidation.validateEmp(txthoten, sb, "Không được bỏ trống họ tên");
+        DataValidation.validateEmp(txtdiachi, sb, "Không được bỏ trống địa chỉ");
+        DataValidation.validateEmp(txtngaysinh, sb, "Không được bỏ trống ngày sinh");
+        DataValidation.validateRole(buttonGroup1, sb, "Phải chọn giới tính");
+        DataValidation.validateEmp(txtmalop, sb, "Không được để trống mã lớp");
+        List<SinhVien> list = dao.selectAll();
+        for (SinhVien sv : list) {
+            if (sv.getMaSV().equalsIgnoreCase(txtmasv.getText())) {
+                MsgBox.showErrorDialog(null, "Không được trùng mã sinh viên");
+                return;
+            }
+        }
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
         SinhVien sv = getForm();
         try {
             dao.update(sv);
@@ -563,6 +614,14 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void delete() {
+        StringBuilder sb = new StringBuilder();
+        DataValidation.validateEmp(txtmasv, sb, "Không mã sinh viên để xóa");
+        
+        if (sb.length() > 0) {
+            MsgBox.showErrorDialog(null, sb.toString());
+            return;
+        }
+        
         String masv = txtmasv.getText();
         try {
             dao.delete(masv);
@@ -575,7 +634,7 @@ public class QuanLiSinhVien extends javax.swing.JFrame {
     }
 
     void fillcbolop() {
-         try {
+        try {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbolop.getModel();
             model.removeAllElements();
             Khoa khoa = (Khoa) cbokhoa.getSelectedItem();

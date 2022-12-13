@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/ledut/Documents/GitHub/Quanlidaihoc/src/Entity/Khoa.java</file>
             <file>file:/C:/Users/ledut/Documents/GitHub/Quanlidaihoc/src/quanlisinhvien/QuanLiKhoa.java</file>
             <file>file:/C:/Users/ledut/Documents/GitHub/Quanlidaihoc/src/quanlisinhvien/TrangChu.java</file>
@@ -14,6 +15,9 @@
             <file>file:/C:/Users/ledut/Documents/GitHub/Quanlidaihoc/src/quanlisinhvien/DangNhap.java</file>
             <file>file:/C:/Users/ledut/Documents/GitHub/Quanlidaihoc/src/quanlisinhvien/QuanLiLop.java</file>
             <file>file:/C:/Users/ledut/Documents/GitHub/Quanlidaihoc/src/Utils/jdbchelper.java</file>
+=======
+            <file>file:/D:/Git/Quanlidaihoc/src/quanlisinhvien/DangNhap.java</file>
+>>>>>>> 5dd1cc1ef012ca9723a8ec8cbcba062fbff54607
         </group>
     </open-files>
 </project-private>
